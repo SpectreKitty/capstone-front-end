@@ -7,7 +7,7 @@ export default function StartMenu() {
 
   const handleStartGame = () => {
     updateGameState({
-      currentScene: 'introduction',
+      currentScene: 'day1_morning',
       dialogueIndex: 0
     });
   };

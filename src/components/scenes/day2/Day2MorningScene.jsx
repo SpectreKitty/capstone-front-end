@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Dialogue from '../common/Dialogue';
-import { useGameState } from '../../contexts/GameStateContext';
-import bgImage from '../../assets/images/backgrounds/start_img.jpeg'
+import Dialogue from '../../common/Dialogue';
+import { useGameState } from '../../../contexts/GameStateContext';
+import morningImage from '../../assets/images/backgrounds/morning-scene.jpeg'
 import '../../styles/Day1Scene.css'
 
 
@@ -21,7 +21,7 @@ export default function Day1Scene() {
             });
         } else {
             updateGameState({
-              currentScene: 'Day2Scene',
+              currentScene: 'Day1CommunityBoardScene',
               dialogueIndex: 0
             });
         }
@@ -30,7 +30,7 @@ export default function Day1Scene() {
     return (
         <div 
           className="scene-container"
-            style={{ backgroundImage: `url(${bgImage}` }}
+            style={{ backgroundImage: `url(${morningImage}` }}
         >
           <Dialogue
             {...dialogues[gameState.dialogueIndex]}
