@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Dialogue from '../../common/Dialogue';
 import { useGameState } from '../../../contexts/GameStateContext';
 import morningImage from '../../../assets/images/backgrounds/morning-scene.jpeg';

@@ -7,7 +7,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
-  const { login, register, signInWithGoogle, signInWithGithub, signInAnonymously } = useGameState();
+  const { login, register, signInAnonymously } = useGameState();
 
   const handleSubmit = async(e) => {
 		e.preventDefault();

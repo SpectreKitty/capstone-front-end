@@ -6,6 +6,8 @@ import {
   signOut 
   } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
+import { db } from '../firebase/firebase';
+import { collection, addDoc, getDoc, getDocs, doc, query, where, orderBy } from 'firebase/firestore';
 
 const GameStateContext = createContext();
 
@@ -97,20 +99,88 @@ export function GameStateProvider({ children }) {
     }
   };
   
-
   const updateGameState = (updates) => {
     setGameState(prev => ({ ...prev, ...updates}));
   };
 
+  const saveGame = async (saveName) => {
+    try {
+      console.log('User ID:', gameState.user?.uid);
+      const saveData = {
+        userId: gameState.user.uid,
+        saveName, 
+        timestamp: new Date().toISOString(),
+        gameData: {
+          currentScene: gameState.currentScene,
+          currentDay: gameState.currentDay,
+          dialogueIndex: gameState.dialogueIndex,
+          choices: gameState.choices,
+        }
+      };
+
+      await addDoc(collection(db, 'saves'), saveData);
+      return { success: true, message: 'Game saved successfully!' };
+    } catch (error) {
+      console.error('Save error:', error)
+      return { success: false, error: error.message };
+    }
+  };
+
+  const loadSaves = async () => {
+    try {
+      console.log('Querying saves for User ID:', gameState.user.uid);
+      const savesRef = collection(db, 'saves');
+      const q = query(
+        savesRef,
+        where('userId', '==', gameState.user.uid),
+        orderBy('timestamp', 'desc')
+      );
+
+      const querySnapshot = await getDocs(q);
+      console.log('Query snapshot size:', querySnapshot.size);
+      const saves = [];
+      querySnapshot.forEach((doc) => {
+        const saveData = { id: doc.id, ...doc.data() }
+        console.log('Individual save:', saveData);
+        saves.push(saveData);
+      });
+
+      return { success: true, saves };
+    } catch (error) {
+      console.error("Error loading saves:", error)
+      return { success: false, error: error.message };
+    }
+  };
+
+  const loadGame = async (saveId) => {
+    try {
+      const docRef = doc(db, 'saves', saveId);
+      const saveDoc = await getDoc(docRef);
+
+      if (saveDoc.exists()) {
+        const saveData = saveDoc.data();
+        updateGameState(saveData.gameData);
+        return { success: true };
+      }
+      return { success: false, error: 'Save not found' };
+    } catch (error) {
+      return { success: false, error: error.message}
+    }
+  };
+
   return (
-    <GameStateContext.Provider value = {{ 
-      gameState, 
-      updateGameState,
-      login,
-      register,
-      signInAnonymously,
-      logout
-      }}>
+
+      <GameStateContext.Provider value = {{ 
+        gameState, 
+        updateGameState,
+        login,
+        register,
+        signInAnonymously,
+        logout,
+        saveGame,
+        loadSaves,
+        loadGame
+        }}>
       {children}
     </GameStateContext.Provider>
   );

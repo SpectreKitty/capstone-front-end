@@ -1,8 +1,7 @@
 import { GameStateProvider, useGameState } from "./contexts/GameStateContext";
-import { useEffect } from 'react';
-import { getRedirectResult } from "firebase/auth";
-import { auth } from './firebase/firebase';
+import { useState } from 'react';
 import LogoutButton from "./components/common/LogoutButton.jsx";
+import SaveLoadMenu from "./components/common/SaveLoadMenu.jsx";
 import Login from './components/menu/Login.jsx';
 import StartMenu from './components/menu/StartMenu.jsx';
 import Day1MorningScene from "./components/scenes/day1/Day1MorningScene.jsx";
@@ -45,22 +44,18 @@ function GameContent() {
   }
 
 function App() {
-  useEffect(() => {
-    const handleRedirectResult = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result) {
-          console.log("Redicrect result:" , result);
-        }
-      } catch (error) {
-        console.error("Error handling redireect: ", error);
-      }
-    };
-    handleRedirectResult();
-  }, []);
+  const [showSaveLoad, setShowSaveLoad] = useState(false);
 
   return (
     <GameStateProvider>
+      <LogoutButton />
+      <button 
+        className="save-load-button"
+        onClick={() => setShowSaveLoad(true)}
+      >
+        Save/Load
+      </button>
+      {showSaveLoad && <SaveLoadMenu onClose={() => setShowSaveLoad(false)} />}
       <GameContent />
     </GameStateProvider>
   );
