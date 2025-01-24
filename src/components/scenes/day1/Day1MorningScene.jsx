@@ -3,9 +3,16 @@ import { useGameState } from '../../../contexts/GameStateContext';
 import morningImage from '../../../assets/images/backgrounds/morning-scene.jpeg';
 import '../../../styles/Day1Scene.css'
 
-
 export default function Day1MorningScene() {
   const { gameState, updateGameState } = useGameState();
+
+  // useEffect(() => {
+  //   const loadDialogue = async () => {
+  //     const data = await getSceneDialogue('day1_morning');
+  //     setSceneData(data);
+  //   };
+  //   loadDialogue();
+  // },[]);
 
   const dialogues = [
     { character: "Narrator", text: "The warm sunlight filters through the curtains, gently waking you up. Today marks the start the start of your new chapter in this little community-a fresh start in a place that already feels like it holds something special." },
