@@ -1,0 +1,572 @@
+{ "scenes": {
+    "day1_morning": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "The warm sunlight filters through the curtains, gently waking you up. Today marks the start the start of your new chapter in this little community-a fresh start in a place that already feels like it holds something special.",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character",
+          "text": "Alright, first day in a new place. Time to meet the neighbors and see what this town is all about. I wonder if they'll even notice I moved in...",
+          "sequence": 2
+        },
+        {
+          "character": "Main Character", 
+          "text": "This garden... it feels like it's waiting for something, just like me. Maybe I can find my place here.",
+          "sequence": 3
+        },
+        {
+          "character": "Narrator",
+          "text": "Step outside and explore the neighborhood. Who will you meet first?",
+          "sequence": 4
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day1_community_board"
+    },
+    "day1_community_board": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "You walk through a quiet, sunlit path in the neighborhood. The sound of rustling leaves and distant chatter fills the air. As you turn a corner, you spot a wooden community board nestled under a large oak tree. It's decorated with colorful flyers and notes pinned haphazardly.",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character",
+          "text": "Oh, a community board! Let's see what's going on around here.",
+          "sequence": 2
+        },
+        {
+          "character": "Narrator",
+          "text": "You approach the board, your eyes scanning over the assortment of papers. One flyer catches your attention-a bright yellow poster with a picture of a small gray tabby cat",
+          "sequence": 3
+        },
+        {
+          "character": "Main Character(reads flyer)",
+          "text": "Missing Cat: Olive. Last seen near Maple Street. Please call if found.",
+          "sequence": 4
+        },
+        {
+          "character": "Main Character",
+          "text": "Poor little thing. I hope someone's already helping look for her... Maybe I'll keep an eye out while I'm exploring.",
+          "sequence": 5
+        },
+        {
+          "character": "Narrator",
+          "text": "You look at the contact details written at the bottom of the poster. It's clear that this is an opportunity to connect with the community and lend a hand",
+          "sequence": 6
+        },
+        {
+          "character": "Main Character",
+          "text": "This could be a good way to introduce myself. I mean, who doesn't love a good cat rescue story.",
+          "sequence": 7
+        },
+        {
+          "character": "Main Character",
+          "text": "Alright, Olive. Let's find you!",
+          "sequence": 8
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day1_interaction"
+    },
+    "day1_interaction": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "You are wandering through a quiet alleyway lined with blooming flowers and overgrown ivy when the faint sound of a meow catches your attention",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character", 
+          "text": "Wait...was that-",
+          "sequence": 2
+        },
+        {
+          "character": "Narrator",
+          "text": "You listen closely and hear another meow",
+          "sequence": 3
+        },
+        {
+          "character": "Main Character",
+          "text": "A cat! Could it be Olive?!",
+          "sequence": 4
+        },
+        {
+          "character": "Narrator",
+          "text": "You carefully follow the sound, stepping over a fallen flowerpot and turning a corner. There, under a parked bicycle, you spot a small gray tabby cat huddled close to the wall.",
+          "sequence": 5
+        },
+        {
+          "character": "Main Character(softly)",
+          "text": "There you are, Olive. Hey, sweet girl... It's ok. I'm not going to hurt you.",
+          "sequence": 6
+        },
+        {
+          "character": "Narrator",
+          "text": "The cat looks up, her green eyes wide with fear. She lets out a soft, nervous meow.",
+          "sequence": 7
+        },
+        {
+          "character": "Main Character(kneeling down and extending a hand)",
+          "text": "You're scared, huh? It's alright. Let's get you home!",
+          "sequence": 8
+        },
+        {
+          "character": "Narrator",
+          "text": "You pull a small treat from your pocket(something you picked up earlier from the community board) and place it gently on the ground near Olive and wait patiently.",
+          "sequence": 9
+        },
+        {
+          "character": "Main Character",
+          "text": "See? It's for you. You're safe now.",
+          "sequence": 10
+        },
+        {
+          "character": "Narrator",
+          "text": "Olive hesitates but slowly steps forward, sniffing the treat. After a moment, she eats it and allows you to pick her up.",
+          "sequence": 11
+        },
+        {
+          "character": "Main Character",
+          "text": "Gotcha! You're lighter than I expected. Alright, let's get you back to your family.",
+          "sequence": 12
+        },
+        {
+          "character": "Narrator",
+          "text": "You knock on the door of small, cozy house where your neighbor Rose opens up the door her face lighting up as she sees Olive in your arms.",
+          "sequence": 13
+        },
+        {
+          "character": "Rose",
+          "text": "Olive! Oh, my sweet baby, you're home!",
+          "sequence": 14
+        },
+        {
+          "character": "Rose(as she reaches out to take Olive)",
+          "text": "Thank you so much! I've been so worried. You're a lifesaver!",
+          "sequence": 15
+        },
+        {
+          "character": "Main Character",
+          "text": "I'm just glad I could help. I saw your poster on the community board and figured I'd keep an eye out.",
+          "sequence": 16
+        },
+        {
+          "character": "Rose",
+          "text": "Well you've done more than that. I owe you one. Here- at least take this as a thank-you.",
+          "sequence": 17
+        },
+        {
+          "character": "Main Character(accepting the delicious looking plate of cookies from Rose)",
+          "text": "Thank you! I'm glad Olive's safe. Let me know if there's ever anything else I can do to help.",
+          "sequence": 18
+        },
+        {
+          "character": "Narrator",
+          "text": "You and your neighbor wave goodbye as you feel a sense of accomplishment and connection to the community.",
+          "sequence": 19
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day1_night"
+    },
+    "day1_night": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "You sit by the window in your cozy room, moonlight streaming in. The community garden below catches your eye, particularly the small patch where you planted the mysterious glowing seed.",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character",
+          "text": "What a day... I can't believe I actually found Olive. That little adventure felt like something out of a storybook. And the way her owner lit up—it was worth every second.",
+          "sequence": 2
+        },
+        {
+          "character": "Main Character",
+          "text": "This place is starting to feel like home.",
+          "sequence": 3
+        },
+        {
+          "character": "Narrator",
+          "text": "Your mind drifts to the moment you received the glowing seed before moving here.",
+          "sequence": 4
+        },
+        {
+          "character": "Mysterious Stranger",
+          "text": "Take this with you. It's no ordinary seed. Care for it, and it'll grow into something special—something that reflects your kindness and the connections you'll make.",
+          "sequence": 5
+        },
+        {
+          "character": "Main Character",
+          "text": "I didn't know what to think back then, but... I planted it anyway. Something about it just felt right. I wonder what it will become.",
+          "sequence": 6
+        },
+        {
+          "character": "Narrator",
+          "text": "You take out a small journal and begin writing about your day.",
+          "sequence": 7
+        },
+        {
+          "character": "Main Character",
+          "text": "Today, I felt like I made a difference. It was just a cat, sure, but helping Olive reminded me that small acts can mean the world to someone. And maybe, just maybe, they'll help me grow too.",
+          "sequence": 8
+        },
+        {
+          "character": "Narrator",
+          "text": "A faint flicker of light catches your eye from the garden where you planted the seed.",
+          "sequence": 9
+        },
+        {
+          "character": "Main Character",
+          "text": "Was that...? Nah, I must be imagining things. Maybe I'll check on it tomorrow.",
+          "sequence": 10
+        },
+        {
+          "character": "Narrator",
+          "text": "You climb into bed as the peaceful sounds of night fill the room. A faint, warm glow from the garden lingers as you drift off to sleep.",
+          "sequence": 11
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day2_morning"
+    },
+    "day2_morning": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "Morning sunlight streams through the window. You walk to the ornate mirror where 'Daily Affirmations' is etched above.",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character",
+          "text": "Another day, another chance to grow. Let's start this right.",
+          "sequence": 2
+        },
+        {
+          "character": "Narrator",
+          "text": "Choose your daily affirmation:",
+          "sequence": 3,
+          "choices": [
+            {
+              "id": "affirmation1",
+              "text": "I am capable of creating positive change.",
+              "response": {
+                "character": "Main Character",
+                "text": "I am capable of creating positive change. Yesterday showed me that even small actions can ripple out. I'm ready to make a difference again today."
+              }
+            },
+            {
+              "id": "affirmation2",
+              "text": "I am enough just as I am.",
+              "response": {
+                "character": "Main Character",
+                "text": "I am enough just as I am. I don't need to prove anything to anyone. Just being here and doing my best is more than enough."
+              }
+            },
+            {
+              "id": "affirmation3",
+              "text": "I am open to new possibilities today.",
+              "response": {
+                "character": "Main Character",
+                "text": "I am open to new possibilities today. There's so much I don't know about this place and the people here. Who knows what I'll discover today?"
+              }
+            }
+          ]
+        },
+        {
+          "character": "Narrator",
+          "text": "Your reflection glows faintly in the mirror, acknowledging your words.",
+          "sequence": 4
+        },
+        {
+          "character": "Main Character",
+          "text": "Let's see what today brings.",
+          "sequence": 5
+        },
+        {
+          "character": "Narrator",
+          "text": "You step outside, greeted by the bustling community and the garden below.",
+          "sequence": 6
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day2_community_board"
+    },
+    "day2_community_board": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "You approach the community board, noticing several new notes have been posted.",
+          "sequence": 1
+        },
+        {
+          "character": "Main Character",
+          "text": "What's new today?",
+          "sequence": 2
+        },
+        {
+          "character": "Narrator",
+          "text": "A handwritten note catches your eye. The paper is slightly weathered, but the writing is neat and careful.",
+          "sequence": 3
+        },
+        {
+          "character": "Main Character",
+          "text": "'Seeking volunteers for community garden maintenance. Our beloved garden needs some TLC. Join us this afternoon for weeding and general care. All experience levels welcome!' - signed Mr. Chen",
+          "sequence": 4
+        },
+        {
+          "character": "Narrator",
+          "text": "You notice a small sketch of various herbs and flowers decorating the corners of the note.",
+          "sequence": 5
+        },
+        {
+          "character": "Main Character",
+          "text": "The garden has been looking a bit wild lately. And I'd love to learn more about that spot where I planted the seed...",
+          "sequence": 6
+        },
+        {
+          "character": "Narrator",
+          "text": "As you read the notice, you spot an elderly gentleman tending to some plants nearby. He must be Mr. Chen.",
+          "sequence": 7
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day2_interaction"
+    },
+    "day2_interaction": {
+      "dialogues": [
+        {
+          "character": "Narrator",
+          "text": "The afternoon sun warms the garden as you join a small group of volunteers. Mr. Chen stands among them, his weathered hands gesturing as he explains the day's tasks.",
+          "sequence": 1
+        },
+        {
+          "character": "Mr. Chen",
+          "text": "Welcome, everyone! This garden has been our community's heart for over twenty years. Each plant here has its own story.",
+          "sequence": 2
+        },
+        {
+          "character": "Narrator",
+          "text": "You notice a gentle glow emanating from where you planted your seed, though no one else seems to notice.",
+          "sequence": 3
+        },
+        {
+          "character": "Mr. Chen",
+          "text": "Let's split into groups. Some can help with weeding, others with pruning. The most important thing is to be gentle - every plant, even the weeds, has its purpose.",
+          "sequence": 4
+        },
+        {
+          "character": "Main Character",
+          "text": "I'd love to help with the weeding, if that's okay.",
+          "sequence": 5
+        },
+        {
+          "character": "Narrator",
+          "text": "As you work, Mr. Chen shares stories about the garden's history, about how it started as a single tomato plant and grew into this vibrant space.",
+          "sequence": 6
+        },
+        {
+          "character": "Mr. Chen",
+          "text": "You have good hands for this work. The plants respond well to your touch.",
+          "sequence": 7
+        },
+        {
+          "character": "Main Character",
+          "text": "Thank you. I've always loved gardens, but I've never had the chance to really learn about them.",
+          "sequence": 8
+        },
+        {
+          "character": "Narrator",
+          "text": "Hours pass like minutes as you work. The garden slowly transforms, each cleared patch revealing new life underneath.",
+          "sequence": 9
+        },
+        {
+          "character": "Mr. Chen",
+          "text": "Remember, a garden is like a community - it needs regular care, but more importantly, it needs love.",
+          "sequence": 10
+        }
+      ],
+      "kindness_points": 20,
+      "nextScene": "day2_night"
+    },
+    "day2_night": {
+    "dialogues": [
+      {
+        "character": "Narrator",
+        "text": "Back in your room, your hands still carry the earthy scent of the garden. The moonlight reveals small scrapes from the day's work.",
+        "sequence": 1
+      },
+      {
+        "character": "Main Character",
+        "text": "Who knew weeding could be so satisfying? My back's sore, but seeing the garden all cleaned up was worth it.",
+        "sequence": 2
+      },
+      {
+        "character": "Narrator",
+        "text": "You glance out your window at the garden below. The spot where you planted your seed is now glowing noticeably brighter, a soft green pulse in the darkness.",
+        "sequence": 3
+      },
+      {
+        "character": "Main Character",
+        "text": "The seed... it's definitely growing. And after today's gardening, I think I understand a bit better what the stranger meant.",
+        "sequence": 4
+      },
+      {
+        "character": "Narrator",
+        "text": "A small sprout has emerged, its leaves giving off a gentle luminescence.",
+        "sequence": 5
+      },
+      {
+        "character": "Main Character",
+        "text": "Just like the garden needed everyone's help to thrive, maybe that's what makes a community special - everyone contributing in their own way.",
+        "sequence": 6
+      }
+    ],
+    "kindness_points": 20,
+    "nextScene": "day3_morning"
+  },
+  "day3_morning": {
+    "dialogues": [
+      {
+        "character": "Narrator",
+        "text": "The mirror gleams in the morning light, ready for your daily affirmation.",
+        "sequence": 1
+      },
+      {
+        "character": "Narrator",
+        "text": "Choose your daily affirmation:",
+        "sequence": 2,
+        "choices": [
+          {
+            "id": "affirmation1",
+            "text": "I bring light wherever I go.",
+            "response": {
+              "character": "Main Character",
+              "text": "I bring light wherever I go. Just like that glowing seed, every kind act makes the world a little brighter."
+            }
+          },
+          {
+            "id": "affirmation2",
+            "text": "My community grows stronger through caring.",
+            "response": {
+              "character": "Main Character",
+              "text": "My community grows stronger through caring. Each person's contribution makes a difference, no matter how small."
+            }
+          },
+          {
+            "id": "affirmation3",
+            "text": "I am connected to those around me.",
+            "response": {
+              "character": "Main Character",
+              "text": "I am connected to those around me. Every day I feel more part of this community."
+            }
+          }
+        ]
+      }
+    ],
+    "kindness_points": 20,
+    "nextScene": "day3_community_board"
+  },
+  "day3_community_board": {
+    "dialogues": [
+      {
+        "character": "Narrator",
+        "text": "At the community board, a hastily written note stands out among the others.",
+        "sequence": 1
+      },
+      {
+        "character": "Main Character",
+        "text": "'Need help - new mom overwhelmed. Any assistance with house cleanup appreciated.' - Sarah from Oak Street",
+        "sequence": 2
+      },
+      {
+        "character": "Narrator",
+        "text": "The note has a tired, almost desperate quality to its handwriting.",
+        "sequence": 3
+      },
+      {
+        "character": "Main Character",
+        "text": "Being a new parent must be exhausting. A clean house could make such a difference...",
+        "sequence": 4
+      }
+    ],
+    "kindness_points": 20,
+    "nextScene": "day3_interaction"
+  },
+  "day3_interaction": {
+    "dialogues": [
+      {
+        "character": "Narrator",
+        "text": "Sarah answers the door, a crying baby in her arms. The house behind her shows signs of new-parent chaos.",
+        "sequence": 1
+      },
+      {
+        "character": "Sarah",
+        "text": "You... you're here about the note? I didn't think anyone would actually come...",
+        "sequence": 2
+      },
+      {
+        "character": "Main Character",
+        "text": "Sometimes we all need a helping hand. Let me take care of the cleaning - you focus on your little one.",
+        "sequence": 3
+      },
+      {
+        "character": "Narrator",
+        "text": "Hours pass as you clean, organize, and bring order to the chaos. The baby's cries gradually quiet.",
+        "sequence": 4
+      },
+      {
+        "character": "Sarah",
+        "text": "I can't believe the difference. It feels like I can breathe again.",
+        "sequence": 5
+      },
+      {
+        "character": "Main Character",
+        "text": "That's what community is for. And if you need help again, don't hesitate to ask.",
+        "sequence": 6
+      }
+    ],
+    "kindness_points": 20,
+    "nextScene": "day3_night"
+  },
+  "day3_night": {
+    "dialogues": [
+      {
+        "character": "Narrator",
+        "text": "As you prepare for bed, something catches your eye from the garden below.",
+        "sequence": 1
+      },
+      {
+        "character": "Narrator",
+        "text": "Where you planted the seed, a full-grown tree now stands, its leaves glowing with a soft, warm light that seems to pulse with the community's heartbeat.",
+        "sequence": 2
+      },
+      {
+        "character": "Main Character",
+        "text": "Three days... just three days, and already this place feels more like home than anywhere else I've been.",
+        "sequence": 3
+      },
+      {
+        "character": "Narrator",
+        "text": "The tree's light brightens momentarily, as if responding to your words.",
+        "sequence": 4
+      },
+      {
+        "character": "Main Character",
+        "text": "The stranger was right. The seed grew into something special - not just the tree, but all these connections, these moments of kindness...",
+        "sequence": 5
+      },
+      {
+        "character": "Narrator",
+        "text": "The glowing tree stands as a beacon in the night, a symbol of your growing connection to the community, each act of kindness adding to its radiance.",
+        "sequence": 6
+      }
+    ],
+    "kindness_points": 20,
+    "nextScene": "game_end"
+  }
+}
+}

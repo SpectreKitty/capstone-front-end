@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { GameStateProvider } from "../../../contexts/GameStateContext";
-import LogoutButton from "../LogoutButton";
-import SaveLoadMenu from '../SaveLoadMenu';
+import LogoutButton from "../common/LogoutButton";
+import SaveLoadMenu from '../common/SaveLoadMenu';
+import { useGameState } from "../../contexts/GameStateContext";
 
 
 function GameLayout ({ children }) {
   const [showSaveLoad, setShowSaveLoad] = useState(false);
+  const { gameState } = useGameState();
 
   return (
     <>
-      {GameStateProvider.isLoggedIn &&(
+    {gameState.isLoggedIn && gameState.currentScene !== 'menu' && (
         <>
           <LogoutButton />
           <button 

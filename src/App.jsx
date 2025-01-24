@@ -1,6 +1,6 @@
-import SceneRouter from "./components/common/utilities/SceneRouter";
+import SceneRouter from "./components/utilities/SceneRouter";
 import { GameStateProvider, useGameState } from "./contexts/GameStateContext";
-import GameLayout from "./components/common/utilities/GameLayout";
+import GameLayout from "./components/utilities/GameLayout";
 import Login from '../src/components/menu/Login';
 
 
