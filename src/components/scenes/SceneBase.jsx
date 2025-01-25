@@ -1,6 +1,4 @@
 import { useGameState } from "../../contexts/GameStateContext";
-import { useState } from 'react';
-import MazeGame from "../games/MazeGame";
 import Dialogue from '../common/Dialogue';
 import sceneData from '../../data/sceneData.json';
 import morningImage from '../../assets/images/backgrounds/bedroom.png';
@@ -12,7 +10,7 @@ export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
   const scene = sceneData.scenes[sceneId];
   const currentDialogue = scene.dialogues[gameState.dialogueIndex];
-  const [showMaze, setShowMaze] = useState(false);
+
   const getBackgroundImage = () => {
     if (sceneId.includes('community_board')) return boardImage;
     if (sceneId.includes('night')) return nightImage;
@@ -21,10 +19,6 @@ export const SceneBase = ({ sceneId }) => {
 
 
   const handleDialogueComplete = () => {
-    if (sceneId === 'day1_interaction' && gameState.dialogueIndex === 8) {
-      setShowMaze(true);
-      return;
-    }
     if (gameState.dialogueIndex < scene.dialogues.length - 1) {
       updateGameState({
         dialogueIndex: gameState.dialogueIndex + 1,
@@ -50,52 +44,54 @@ export const SceneBase = ({ sceneId }) => {
     }
   };
 
-  const handleMazeComplete = () => {
-    setShowMaze(false);
-    updateGameState({
-      dialogueIndex: gameState.dialogueIndex + 1,
-      lastChoice: null
-    });
-  };
+  const renderContent = () => {
+    if (!currentDialogue) return null;
 
+    if (currentDialogue.choices) {
+      return (
+        <div className="dialogue-container">
+          <div className="character-name">{currentDialogue.character}</div>
+          <div className="dialogue-text">{currentDialogue.text}</div>
+          <div className="choices-container">
+            {currentDialogue.choices.map((choice) => (
+              <button
+                key={choice.id}
+                className="choice-button"
+                onClick={() => handleChoice(choice)}
+              >
+                {choice.text}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (gameState.lastChoice) {
+      return (
+        <Dialogue
+          {...gameState.lastChoice.response}
+          onComplete={handleDialogueComplete}
+        />
+      );
+    }
+
+    return (
+      <Dialogue
+        {...currentDialogue}
+        onComplete={handleDialogueComplete}
+      />
+    );
+  };
 
   return (
     <div className="scene-container" style={{ backgroundImage: `url(${getBackgroundImage()})` }}>
       <div className="dialogue-choices-container">
-        {showMaze ? (
-          <MazeGame onWin={handleMazeComplete} />
-        ) : currentDialogue.choices ? (
-          <div className="dialogue-container">
-            <div className="character-name">{currentDialogue.character}</div>
-            <div className="dialogue-text">{currentDialogue.text}</div>
-            <div className="choices-container">
-              {currentDialogue.choices.map((choice) => (
-                <button
-                  key={choice.id}
-                  className="choice-button"
-                  onClick={() => handleChoice(choice)}
-                >
-                  {choice.text}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : gameState.lastChoice ? (
-          <Dialogue
-            {...gameState.lastChoice.response}
-            onComplete={handleDialogueComplete}
-          />
-        ) : (
-          <Dialogue
-            {...currentDialogue}
-            onComplete={handleDialogueComplete}
-          />
-        )}
+        {renderContent()}
       </div>
     </div>
   );
 };
-
 
 export const Day1MorningScene = () => <SceneBase sceneId="day1_morning" />;
 export const Day1CommunityBoardScene = () => <SceneBase sceneId="day1_community_board" />;
