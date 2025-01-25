@@ -471,6 +471,26 @@
             }
           }
         ]
+      },
+      {
+        "character": "Narrator",
+        "text": "Your reflection glows faintly in the mirror, acknowledging your words.",
+        "sequence": 3
+      },
+      {
+        "character": "Main Character",
+        "text": "There's something magical about starting the day with intention.",
+        "sequence": 4
+      },
+      {
+        "character": "Narrator",
+        "text": "As you speak, you notice the garden outside your window seems to shimmer in response.",
+        "sequence": 5
+      },
+      {
+        "character": "Main Character",
+        "text": "The seed... it's grown so much. Just like the connections I've made here.",
+        "sequence": 6
       }
     ],
     "kindness_points": 20,
