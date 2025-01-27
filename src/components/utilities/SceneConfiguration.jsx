@@ -1,7 +1,7 @@
-import morningImage from '../../assets/images/backgrounds/bedroom.png';
-import nightImage from '../../assets/images/backgrounds/bedroom_night.png';
-import communityBoardImage from '../../assets/images/backgrounds/community_board.jpg';
-import defaultImage from '../../assets/images/backgrounds/start_img.jpeg';
+import morningImage from '/src/assets/images/backgrounds/bedroom.png';
+import nightImage from '/src/assets/images/backgrounds/bedroom_night.png';
+import communityBoardImage from '/src/assets/images/backgrounds/community_board.jpg';
+import defaultImage from '/src/assets/images/backgrounds/start_img.jpeg';
 
 // Background types for reusable scenes
 export const BACKGROUNDS = {

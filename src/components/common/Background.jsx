@@ -2,6 +2,12 @@ import { BACKGROUNDS } from '../utilities/SceneConfiguration';
 import '../../styles/Background.css';
 
 const Background = ({ imageSrc, children }) => {
+    console.log('Background Props:', {
+        providedImage: imageSrc,
+        defaultImage: BACKGROUNDS.DEFAULT,
+        finalImage: imageSrc || BACKGROUNDS.DEFAULT
+      });
+    
   const backgroundImage = imageSrc || BACKGROUNDS.DEFAULT;
   
   return (

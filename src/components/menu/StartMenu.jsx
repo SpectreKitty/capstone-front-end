@@ -7,8 +7,11 @@ export default function StartMenu() {
 
   const handleStartGame = () => {
     updateGameState({
-      currentScene: 'day1_morning',
-      dialogueIndex: 0
+      currentScene: 'day_transition',
+      transitionData: {
+        day: "1",
+        nextScene: 'day1_morning'
+      }
     });
   };
 
