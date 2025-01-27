@@ -7,7 +7,7 @@ import {
   } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 import { db } from '../firebase/firebase';
-import { collection, addDoc, getDoc, getDocs, doc, query, where, orderBy } from 'firebase/firestore';
+import { collection, addDoc, getDoc, getDocs, doc, query, where, orderBy, deleteDoc } from 'firebase/firestore';
 
 const GameStateContext = createContext();
 
@@ -168,6 +168,17 @@ export function GameStateProvider({ children }) {
     }
   };
 
+  const deleteSave = async (saveId) => {
+    try {
+      // Delete the save from the database
+      await deleteDoc(doc(db, 'saves', saveId));
+      return { success: true };
+    } catch (error) {
+      console.error('Error deleting save:', error);
+      return { success: false, error: 'Failed to delete save' };
+    }
+  };
+
   return (
 
       <GameStateContext.Provider value = {{ 
@@ -179,7 +190,8 @@ export function GameStateProvider({ children }) {
         logout,
         saveGame,
         loadSaves,
-        loadGame
+        loadGame,
+        deleteSave
         }}>
       {children}
     </GameStateContext.Provider>

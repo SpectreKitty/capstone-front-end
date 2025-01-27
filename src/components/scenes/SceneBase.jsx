@@ -10,6 +10,7 @@ export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
   const scene = sceneData.scenes[sceneId];
   const currentDialogue = scene.dialogues[gameState.dialogueIndex];
+
   const handleDialogueComplete = () => {
     if (gameState.dialogueIndex < scene.dialogues.length - 1) {
       updateGameState({
@@ -17,11 +18,17 @@ export const SceneBase = ({ sceneId }) => {
         lastChoice: null
       });
     } else {
+      // Check if we're in day3_night (final scene)
+      if (sceneId === 'day3_night') {
+        // Don't transition anywhere - it's the end of the game
+        return;
+      }
+  
       const currentDay = sceneId.match(/day(\d)/)?.[1];
       const nextDay = scene.nextScene.match(/day(\d)/)?.[1];
   
-      // If this is a night scene (ends with "_night") and next scene is a morning of next day
-      if (sceneId.endsWith('_night') && nextDay !== currentDay) {
+      // Handle day transitions for other night scenes
+      if (sceneId.endsWith('_night') && nextDay !== currentDay && currentDay !== "3") {
         updateGameState({
           currentScene: 'day_transition',
           transitionData: {
@@ -42,7 +49,6 @@ export const SceneBase = ({ sceneId }) => {
       }
     }
   };
-  
 
   const handleChoice = (choice) => {
     if (currentDialogue.choices) {

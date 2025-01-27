@@ -3,7 +3,7 @@ import { useGameState } from '../../contexts/GameStateContext';
 import '../../styles/SaveLoadMenu.css';
 
 export default function SaveLoadMenu({ onClose }) {
-  const { saveGame, loadSaves, loadGame } = useGameState();
+  const { saveGame, loadSaves, loadGame, deleteSave } = useGameState();
   const [saveName, setSaveName] = useState('');
   const [saves, setSaves] = useState([]);
   const [message, setMessage] = useState('');
@@ -45,6 +45,18 @@ export default function SaveLoadMenu({ onClose }) {
     }
   };
 
+  const handleDelete = async (saveId) => {
+    if (window.confirm('Are you sure you want to delete this save?')) {
+      const result = await deleteSave(saveId);
+      if (result.success) {
+        fetchSaves();
+        setMessage('Save deleted successfully');
+      } else {
+        setMessage(result.error);
+      }
+    }
+  };
+
   return (
     <div className="save-load-overlay">
       <div className="save-load-container">
@@ -73,11 +85,9 @@ export default function SaveLoadMenu({ onClose }) {
                 <div key={save.id} className="save-item">
                   <div>
                     <div className="save-name">{save.saveName}</div>
-                    <div className="save-date">
-                      {new Date(save.timestamp.seconds * 1000).toLocaleString()}
-                    </div>
                   </div>
                   <button onClick={() => handleLoad(save.id)}>Load</button>
+                  <button onClick={() => handleDelete(save.id)} className='delete-button'>Delete</button>
                 </div>
               ))}
             </div>
