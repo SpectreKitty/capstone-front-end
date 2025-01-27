@@ -1,22 +1,15 @@
 import { useGameState } from "../../contexts/GameStateContext";
 import Dialogue from '../common/Dialogue';
+import Background from "../common/Background";
+import { sceneBackgrounds, BACKGROUNDS } from "../utilities/SceneConfiguration";
 import sceneData from '../../data/sceneData.json';
-import morningImage from '../../assets/images/backgrounds/bedroom.png';
-import nightImage from '../../assets/images/backgrounds/bedroom_night.png'
-import boardImage from '../../assets/images/backgrounds/community_board.jpg';
+import Choices from '../common/Choices';
 import '../../styles/Scene.css';
 
 export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
   const scene = sceneData.scenes[sceneId];
   const currentDialogue = scene.dialogues[gameState.dialogueIndex];
-
-  const getBackgroundImage = () => {
-    if (sceneId.includes('community_board')) return boardImage;
-    if (sceneId.includes('night')) return nightImage;
-    return morningImage;
-  };
-
 
   const handleDialogueComplete = () => {
     if (gameState.dialogueIndex < scene.dialogues.length - 1) {
@@ -30,7 +23,8 @@ export const SceneBase = ({ sceneId }) => {
         transitionData: {
           nextScene: scene.nextScene,
           transitionText: 'Later...'
-        }
+        },
+        lastChoice: null
       });
     }
   };
@@ -44,54 +38,47 @@ export const SceneBase = ({ sceneId }) => {
     }
   };
 
-  const renderContent = () => {
-    if (!currentDialogue) return null;
-
-    if (currentDialogue.choices) {
-      return (
-        <div className="dialogue-container">
-          <div className="character-name">{currentDialogue.character}</div>
-          <div className="dialogue-text">{currentDialogue.text}</div>
-          <div className="choices-container">
-            {currentDialogue.choices.map((choice) => (
-              <button
-                key={choice.id}
-                className="choice-button"
-                onClick={() => handleChoice(choice)}
-              >
-                {choice.text}
-              </button>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
     if (gameState.lastChoice) {
       return (
-        <Dialogue
-          {...gameState.lastChoice.response}
-          onComplete={handleDialogueComplete}
-        />
+        <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
+          <Dialogue
+            {...gameState.lastChoice.response}
+            onComplete={handleDialogueComplete}
+          />
+        </Background>
       );
     }
 
-    return (
-      <Dialogue
-        {...currentDialogue}
-        onComplete={handleDialogueComplete}
-      />
-    );
-  };
-
   return (
-    <div className="scene-container" style={{ backgroundImage: `url(${getBackgroundImage()})` }}>
-      <div className="dialogue-choices-container">
-        {renderContent()}
+    <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
+      <div className="w-full px-4">
+        {currentDialogue.choices ? (
+          <>
+            <Choices
+              choices={currentDialogue.choices}
+              onChoice={handleChoice}
+            />
+            <Dialogue
+              text={currentDialogue.text}
+              character={currentDialogue.character}
+            />
+          </>
+        ) : gameState.lastChoice ? (
+          <Dialogue
+            {...gameState.lastChoice.response}
+            onComplete={handleDialogueComplete}
+          />
+        ) : (
+          <Dialogue
+            {...currentDialogue}
+            onComplete={handleDialogueComplete}
+          />
+        )}
       </div>
-    </div>
+    </Background>
   );
 };
+
 
 export const Day1MorningScene = () => <SceneBase sceneId="day1_morning" />;
 export const Day1CommunityBoardScene = () => <SceneBase sceneId="day1_community_board" />;

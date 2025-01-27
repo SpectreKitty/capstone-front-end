@@ -1,0 +1,45 @@
+.game-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .game-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+  
+  .game-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+  
+  .game-background-content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;  /* Force full height */
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;  /* Always push content to bottom */
+    padding-bottom: 2rem;
+    overflow: hidden;  /* Prevent any potential scrolling */
+  }

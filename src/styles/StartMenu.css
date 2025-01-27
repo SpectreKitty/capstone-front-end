@@ -1,23 +1,23 @@
 .menu-container {
-    width: 100vw;  /* Changed to viewport width */
-    min-height: 100vh;  /* Ensure minimum height */
+    width: 100vw;  
+    min-height: 100vh;  
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #1a1a1a;
     color: white;
-    position: absolute;  /* Added this */
-    left: 0;            /* Added this */
-    top: 0;             /* Added this */
-    right: 0;           /* Added this */
+    position: absolute;  
+    left: 0;            
+    top: 0;            
+    right: 0;          
   }
   
   .game-title {
     font-size: 3rem;
     margin-bottom: 2rem;
     text-align: center;
-    width: 100%;        /* Added this */
+    width: 100%;       
   }
   
   .menu-buttons {
@@ -25,8 +25,8 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    width: 300px;       /* Increased width */
-    margin: 0 auto;     /* Center horizontally */
+    width: 300px;      
+    margin: 0 auto;   
   }
   
   .menu-button {
