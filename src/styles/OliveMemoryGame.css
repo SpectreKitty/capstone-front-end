@@ -1,0 +1,102 @@
+.memory-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .memory-game-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  .memory-game-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .memory-game-header h2 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  
+  .memory-game-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .memory-game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .memory-card {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+  }
+  
+  .memory-card-hidden {
+    background-color: #4a90e2;
+  }
+  
+  .memory-card-flipped {
+    background-color: white;
+  }
+  
+  .memory-card-matched {
+    background-color: gray;
+    cursor: default;
+  }
+  
+  .memory-game-restart {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .memory-game-restart:hover {
+    background-color: #357abd;
+  }
+  
+  .memory-game-win-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    font-size: 2rem;
+  }

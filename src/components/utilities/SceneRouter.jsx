@@ -11,7 +11,8 @@ import {
   Day3MorningScene,
   Day3CommunityBoardScene,
   Day3InteractionScene,
-  Day3NightScene
+  Day3NightScene,
+  OliveMemoryGameScene
 } from "../scenes/SceneBase"; 
 import SceneTransition from "../transitions/SceneTransition";
 import DayTransition from "../transitions/DayTransition";
@@ -72,6 +73,8 @@ function SceneRouter() {
       return <Day3InteractionScene />;
     case 'day3_night':
       return <Day3NightScene />;
+    case 'olive_memory':
+      return <OliveMemoryGameScene />
     default:
       return <StartMenu />;
   }

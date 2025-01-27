@@ -4,12 +4,20 @@ import Background from "../common/Background";
 import { sceneBackgrounds, BACKGROUNDS } from "../utilities/SceneConfiguration";
 import sceneData from '../../data/sceneData.json';
 import Choices from '../common/Choices';
+import OliveMemoryGame from '../games/OliveMemoryGame';
 import '../../styles/Scene.css';
 
 export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
   const scene = sceneData.scenes[sceneId];
   const currentDialogue = scene.dialogues[gameState.dialogueIndex];
+
+  const handleGameComplete = () => {
+    updateGameState({
+      dialogueIndex: gameState.dialogueIndex + 1,
+      lastChoice: null
+    });
+  };
 
   const handleDialogueComplete = () => {
     if (gameState.dialogueIndex < scene.dialogues.length - 1) {
@@ -70,6 +78,14 @@ export const SceneBase = ({ sceneId }) => {
       );
     }
 
+    if (currentDialogue.type === 'game') {
+      return (
+        <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
+          <OliveMemoryGame onGameComplete={handleGameComplete} />
+        </Background>
+      )
+    }
+
   return (
     <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
       <div className="w-full px-4">
@@ -112,3 +128,4 @@ export const Day3MorningScene = () => <SceneBase sceneId="day3_morning" />;
 export const Day3CommunityBoardScene = () => <SceneBase sceneId="day3_community_board" />;
 export const Day3InteractionScene = () => <SceneBase sceneId="day3_interaction" />;
 export const Day3NightScene = () => <SceneBase sceneId="day3_night" />;
+export const OliveMemoryGameScene = () => <SceneBase sceneId="olive_memory" />;

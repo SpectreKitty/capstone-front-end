@@ -104,9 +104,9 @@
           "sequence": 6
         },
         {
-          "type": "maze",
+          "type": "game",
           "character": "Narrator",
-          "text": "Navigate through the maze to catch Olive the cat.",
+          "text": "Navigate through the hazards to catch Olive the cat.",
           "sequence": 7
         },
         {
