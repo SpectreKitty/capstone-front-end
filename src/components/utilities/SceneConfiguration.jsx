@@ -1,4 +1,3 @@
-// src/config/sceneConfig.js
 import morningImage from '../../assets/images/backgrounds/bedroom.png';
 import nightImage from '../../assets/images/backgrounds/bedroom_night.png';
 import communityBoardImage from '../../assets/images/backgrounds/community_board.jpg';

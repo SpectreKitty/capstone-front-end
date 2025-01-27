@@ -10,7 +10,6 @@ export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
   const scene = sceneData.scenes[sceneId];
   const currentDialogue = scene.dialogues[gameState.dialogueIndex];
-
   const handleDialogueComplete = () => {
     if (gameState.dialogueIndex < scene.dialogues.length - 1) {
       updateGameState({
@@ -18,16 +17,32 @@ export const SceneBase = ({ sceneId }) => {
         lastChoice: null
       });
     } else {
-      updateGameState({
-        currentScene: 'transition',
-        transitionData: {
-          nextScene: scene.nextScene,
-          transitionText: 'Later...'
-        },
-        lastChoice: null
-      });
+      const currentDay = sceneId.match(/day(\d)/)?.[1];
+      const nextDay = scene.nextScene.match(/day(\d)/)?.[1];
+  
+      // If this is a night scene (ends with "_night") and next scene is a morning of next day
+      if (sceneId.endsWith('_night') && nextDay !== currentDay) {
+        updateGameState({
+          currentScene: 'day_transition',
+          transitionData: {
+            day: nextDay,
+            nextScene: scene.nextScene
+          },
+          lastChoice: null
+        });
+      } else {
+        updateGameState({
+          currentScene: 'transition',
+          transitionData: {
+            nextScene: scene.nextScene,
+            transitionText: 'Later...'
+          },
+          lastChoice: null
+        });
+      }
     }
   };
+  
 
   const handleChoice = (choice) => {
     if (currentDialogue.choices) {
@@ -78,7 +93,6 @@ export const SceneBase = ({ sceneId }) => {
     </Background>
   );
 };
-
 
 export const Day1MorningScene = () => <SceneBase sceneId="day1_morning" />;
 export const Day1CommunityBoardScene = () => <SceneBase sceneId="day1_community_board" />;
