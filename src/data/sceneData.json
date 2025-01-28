@@ -85,7 +85,7 @@
         },
         {
           "character": "Narrator",
-          "text": "You listen closely and hear another meow",
+          "text": "You listen closely and hear another meow.",
           "sequence": 3
         },
         {
@@ -520,19 +520,25 @@
         "sequence": 3
       },
       {
+        "type": "game",
+        "character": "Narrator",
+        "text": "Navigate through the hazards to catch Olive the cat.",
+        "sequence": 4
+      },
+      {
         "character": "Narrator",
         "text": "Hours pass as you clean, organize, and bring order to the chaos. The baby's cries gradually quiet.",
-        "sequence": 4
+        "sequence": 5
       },
       {
         "character": "Sarah",
         "text": "I can't believe the difference. It feels like I can breathe again.",
-        "sequence": 5
+        "sequence": 6
       },
       {
         "character": "Main Character",
         "text": "That's what community is for. And if you need help again, don't hesitate to ask.",
-        "sequence": 6
+        "sequence": 7
       }
     ],
     "kindness_points": 20,

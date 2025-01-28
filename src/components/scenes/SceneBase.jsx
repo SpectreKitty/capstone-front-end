@@ -5,6 +5,7 @@ import { sceneBackgrounds, BACKGROUNDS } from "../utilities/SceneConfiguration";
 import sceneData from '../../data/sceneData.json';
 import Choices from '../common/Choices';
 import OliveMemoryGame from '../games/OliveMemoryGame';
+import SarahCatchingGame from '../games/SarahCatchingGame';
 import '../../styles/Scene.css';
 
 export const SceneBase = ({ sceneId }) => {
@@ -79,12 +80,28 @@ export const SceneBase = ({ sceneId }) => {
     }
 
     if (currentDialogue.type === 'game') {
-      return (
+      // Determine which game to render based on the scene
+      let GameComponent;
+      switch(sceneId) {
+        case 'day1_interaction':
+          GameComponent = OliveMemoryGame;
+          break;
+        case 'day3_interaction':
+          GameComponent = SarahCatchingGame;
+          break;
+        default:
+          // Fallback to a default game or null
+          GameComponent = null;
+      }
+    
+      // Render the game if a component is found
+      return GameComponent ? (
         <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
-          <OliveMemoryGame onGameComplete={handleGameComplete} />
+          <GameComponent onGameComplete={handleGameComplete} />
         </Background>
-      )
+      ) : null;
     }
+    
 
   return (
     <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
@@ -129,3 +146,4 @@ export const Day3CommunityBoardScene = () => <SceneBase sceneId="day3_community_
 export const Day3InteractionScene = () => <SceneBase sceneId="day3_interaction" />;
 export const Day3NightScene = () => <SceneBase sceneId="day3_night" />;
 export const OliveMemoryGameScene = () => <SceneBase sceneId="olive_memory" />;
+export const SarahCatchingScene = () => <SceneBase sceneId="sarah_catching" />;

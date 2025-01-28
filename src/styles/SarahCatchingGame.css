@@ -1,0 +1,96 @@
+.catching-game-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 42rem;
+    background-color: #111827;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    z-index: 50;
+  }
+  
+  
+  .game-area {
+    position: relative;
+    height: 24rem;
+    background-color: #1f2937;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .score-display {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+  }
+  
+  .missed-display {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+  }
+  
+  .falling-item {
+    position: absolute;
+    font-size: 1.5rem;
+    transition: top 40ms linear;
+  }
+
+  .basket {
+    position: absolute;
+    font-size: 3.5rem;
+    transform: translateX(-50%);
+    transition: left 100ms ease;
+  }
+  
+  
+  
+  .game-over-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .game-over-content {
+    text-align: center;
+    color: white;
+  }
+  
+  .game-over-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .game-over-score {
+    margin-bottom: 1rem;
+  }
+  
+  .restart-button {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+  }
+  
+  .restart-button:hover {
+    background-color: #2563eb;
+  }
+  
+  .instructions {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: white;
+    font-size: 0.875rem;
+  }
