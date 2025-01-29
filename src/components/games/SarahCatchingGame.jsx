@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import '../../styles/SarahCatchingGame.css';
+import '../../styles/SarahCatchingGame.css'
 
 const SarahCatchingGame = ({ onGameComplete }) => {
   const [score, setScore] = useState(0);
@@ -7,6 +7,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
   const [basketPosition, setBasketPosition] = useState(50);
   const [items, setItems] = useState([]);
   const [missedItems, setMissedItems] = useState(0);
+  const [showWinMessage, setShowWinMessage] = useState(false);
   const itemsRef = useRef([]);
   const WINNING_SCORE = 15;
   const MAX_MISSED = 5;
@@ -19,6 +20,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
     setBasketPosition(50);
     setItems([]);
     setMissedItems(0);
+    setShowWinMessage(false);
     itemsRef.current = [];
   };
 
@@ -75,7 +77,17 @@ const SarahCatchingGame = ({ onGameComplete }) => {
       );
 
       if (caughtItems.length > 0) {
-        setScore(prev => prev + caughtItems.length);
+        setScore(prev => {
+          const newScore = prev + caughtItems.length;
+          if (newScore >= WINNING_SCORE && !gameOver) {
+            setGameOver(true);
+            setShowWinMessage(true);
+            if (onGameComplete) {
+              setTimeout(() => onGameComplete(), 1500);
+            }
+          }
+          return newScore;
+        });
         caughtItems.forEach(item => {
           item.counted = true;
         });
@@ -88,11 +100,14 @@ const SarahCatchingGame = ({ onGameComplete }) => {
           item.counted = true;
         });
         setMissedItems(prev => {
-          return prev + missedNewItems.length;
+          const newMissed = prev + missedNewItems.length;
+          if (newMissed >= MAX_MISSED) {
+            setGameOver(true);
+          }
+          return newMissed;
         });
       }
 
-      // Update items list and remove out-of-bounds items
       itemsRef.current = itemsRef.current.filter(item => 
         item.top <= 95 &&
         !caughtItems.includes(item)
@@ -105,18 +120,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
       clearInterval(itemInterval);
       clearInterval(moveInterval);
     };
-  }, [gameOver, basketPosition, createItem]);
-
-  useEffect(() => {
-    if (score >= WINNING_SCORE) {
-      setGameOver(true);
-      onGameComplete(true);
-    } else if (missedItems >= MAX_MISSED) {
-      setGameOver(true);
-    }
-  }, [score, missedItems, onGameComplete, WINNING_SCORE, MAX_MISSED]);
-
-
+  }, [gameOver, basketPosition, createItem, onGameComplete]);
 
   return (
     <div className="catching-game-container">
@@ -155,10 +159,10 @@ const SarahCatchingGame = ({ onGameComplete }) => {
           <div className="game-over-overlay">
             <div className="game-over-content">
               <h2 className="game-over-title">
-                {score >= WINNING_SCORE ? 'You Won!' : 'Try Again!'}
+                {showWinMessage? 'You Won!': 'Try Again!'}
               </h2>
               <p className="game-over-score">Final Score: {score}</p>
-              {score < WINNING_SCORE && (
+              {!showWinMessage && (
                 <button
                   onClick={resetGame}
                   className="restart-button"
