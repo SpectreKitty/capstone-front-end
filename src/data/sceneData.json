@@ -370,29 +370,35 @@
           "sequence": 5
         },
         {
+          "type": "game",
+          "character": "Narrator",
+          "text": "Help clear the garden by removing the weeds. Be careful - some weeds need multiple pulls to remove completely!",
+          "sequence": 6
+        },
+        {
           "character": "Narrator",
           "text": "As you work, Mr. Chen shares stories about the garden's history, about how it started as a single tomato plant and grew into this vibrant space.",
-          "sequence": 6
+          "sequence": 7
         },
         {
           "character": "Mr. Chen",
           "text": "You have good hands for this work. The plants respond well to your touch.",
-          "sequence": 7
+          "sequence": 8
         },
         {
           "character": "Main Character",
           "text": "Thank you. I've always loved gardens, but I've never had the chance to really learn about them.",
-          "sequence": 8
+          "sequence": 9
         },
         {
           "character": "Narrator",
           "text": "Hours pass like minutes as you work. The garden slowly transforms, each cleared patch revealing new life underneath.",
-          "sequence": 9
+          "sequence": 10
         },
         {
           "character": "Mr. Chen",
           "text": "Remember, a garden is like a community - it needs regular care, but more importantly, it needs love.",
-          "sequence": 10
+          "sequence": 11
         }
       ],
       "kindness_points": 20,

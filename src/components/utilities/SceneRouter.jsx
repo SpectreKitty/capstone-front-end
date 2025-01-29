@@ -13,7 +13,8 @@ import {
   Day3InteractionScene,
   Day3NightScene,
   OliveMemoryGameScene,
-  SarahCatchingScene
+  SarahCatchingScene,
+  GardenWeedingScene
 } from "../scenes/SceneBase"; 
 import SceneTransition from "../transitions/SceneTransition";
 import DayTransition from "../transitions/DayTransition";
@@ -78,6 +79,8 @@ function SceneRouter() {
       return <OliveMemoryGameScene />
     case 'sarah_catching':
       return <SarahCatchingScene />
+    case 'garden_weeding':
+      return <GardenWeedingScene />
     default:
       return <StartMenu />;
   }

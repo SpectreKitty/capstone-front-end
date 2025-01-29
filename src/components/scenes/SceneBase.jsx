@@ -6,6 +6,7 @@ import sceneData from '../../data/sceneData.json';
 import Choices from '../common/Choices';
 import OliveMemoryGame from '../games/OliveMemoryGame';
 import SarahCatchingGame from '../games/SarahCatchingGame';
+import GardenWeedingGame from "../games/GardenWeedingGame";
 import '../../styles/Scene.css';
 
 export const SceneBase = ({ sceneId }) => {
@@ -86,6 +87,9 @@ export const SceneBase = ({ sceneId }) => {
         case 'day1_interaction':
           GameComponent = OliveMemoryGame;
           break;
+        case 'day2_interaction':
+          GameComponent = GardenWeedingGame;
+          break;
         case 'day3_interaction':
           GameComponent = SarahCatchingGame;
           break;
@@ -147,3 +151,4 @@ export const Day3InteractionScene = () => <SceneBase sceneId="day3_interaction" 
 export const Day3NightScene = () => <SceneBase sceneId="day3_night" />;
 export const OliveMemoryGameScene = () => <SceneBase sceneId="olive_memory" />;
 export const SarahCatchingScene = () => <SceneBase sceneId="sarah_catching" />;
+export const GardenWeedingScene = () => <SceneBase sceneId="garden_weeding" />;
