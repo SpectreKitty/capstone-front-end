@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import '../../styles/CatchingGame.css';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import '../../styles/SarahCatchingGame.css';
 
 const SarahCatchingGame = ({ onGameComplete }) => {
   const [score, setScore] = useState(0);
@@ -7,6 +7,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
   const [basketPosition, setBasketPosition] = useState(50);
   const [items, setItems] = useState([]);
   const [missedItems, setMissedItems] = useState(0);
+  const itemsRef = useRef([]);
   const WINNING_SCORE = 15;
   const MAX_MISSED = 5;
 
@@ -18,6 +19,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
     setBasketPosition(50);
     setItems([]);
     setMissedItems(0);
+    itemsRef.current = [];
   };
 
   const createItem = useCallback(() => {
@@ -26,6 +28,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
       type: possibleItems[Math.floor(Math.random() * possibleItems.length)],
       position: Math.random() * 90,
       top: -10,
+      counted: false
     };
   }, []);
 
@@ -46,43 +49,56 @@ const SarahCatchingGame = ({ onGameComplete }) => {
     if (gameOver) return;
 
     const itemInterval = setInterval(() => {
-      // Always spawn at least one item if there are less than 3 items
-      if (items.length < 3) {
-        setItems(prev => [...prev, createItem()]);
+      if (itemsRef.current.length < 5) {
+        const newItem = createItem();
+        itemsRef.current = [...itemsRef.current, newItem];
+        setItems(itemsRef.current);
       } 
-      // Randomly spawn additional items if there are less than 6 total
-      else if (items.length < 6 && Math.random() > 0.5) {
-        setItems(prev => [...prev, createItem()]);
+      else if (itemsRef.current.length < 8 && Math.random() > 0.2) {
+        const newItem = createItem();
+        itemsRef.current = [...itemsRef.current, newItem];
+        setItems(itemsRef.current);
       }
-    }, 1000);
+    }, 800);
 
     const moveInterval = setInterval(() => {
-      setItems(prev => {
-        const newItems = prev.map(item => ({
-          ...item,
-          top: item.top + 1.5
-        }));
+      itemsRef.current = itemsRef.current.map(item => ({
+        ...item,
+        top: item.top + 1.5
+      }));
 
-        const caughtItems = newItems.filter(item => 
-          item.top >= 85 &&
-          item.top <= 95 &&
-          Math.abs(item.position - basketPosition) < 10
-        );
+      const caughtItems = itemsRef.current.filter(item => 
+        !item.counted &&
+        item.top >= 85 &&
+        item.top <= 95 &&
+        Math.abs(item.position - basketPosition) < 10
+      );
 
-        const missedNewItems = newItems.filter(item => item.top > 95);
-        if (missedNewItems.length > 0) {
-          setMissedItems(prev => prev + missedNewItems.length);
-        }
+      if (caughtItems.length > 0) {
+        setScore(prev => prev + caughtItems.length);
+        caughtItems.forEach(item => {
+          item.counted = true;
+        });
+      }
 
-        if (caughtItems.length > 0) {
-          setScore(prev => prev + caughtItems.length);
-        }
+      const missedNewItems = itemsRef.current.filter(item => !item.counted && item.top > 95);
 
-        return newItems.filter(item => 
-          item.top <= 95 &&
-          !caughtItems.includes(item)
-        );
-      });
+      if (missedNewItems.length > 0) {
+        missedNewItems.forEach(item => {
+          item.counted = true;
+        });
+        setMissedItems(prev => {
+          return prev + missedNewItems.length;
+        });
+      }
+
+      // Update items list and remove out-of-bounds items
+      itemsRef.current = itemsRef.current.filter(item => 
+        item.top <= 95 &&
+        !caughtItems.includes(item)
+      );
+
+      setItems([...itemsRef.current]);
     }, 40);
 
     return () => {
@@ -94,11 +110,13 @@ const SarahCatchingGame = ({ onGameComplete }) => {
   useEffect(() => {
     if (score >= WINNING_SCORE) {
       setGameOver(true);
-      onGameComplete?.(true);
+      onGameComplete(true);
     } else if (missedItems >= MAX_MISSED) {
       setGameOver(true);
     }
-  }, [score, missedItems, onGameComplete]);
+  }, [score, missedItems, onGameComplete, WINNING_SCORE, MAX_MISSED]);
+
+
 
   return (
     <div className="catching-game-container">
