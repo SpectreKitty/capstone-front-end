@@ -1,102 +1,155 @@
 .memory-game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  .memory-game-overlay {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0,0,0,0.7);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    width: 90%;
-    max-width: 500px;
-  }
-  
-  .memory-game-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .memory-game-header h2 {
-    margin: 0;
-    font-size: 2rem;
-  }
-  
-  .memory-game-stats {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.memory-game-overlay {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.memory-game-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.memory-game-header h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.memory-game-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.memory-game-stats p {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin: 0;
+}
+
+.memory-game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+}
+
+.memory-card-front,
+.memory-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.memory-card-front {
+  background-color: #3498db;
+  color: white;
+}
+
+.memory-card-back {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+.memory-card-flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card-matched .memory-card-inner {
+  transform: rotateY(180deg);
+  background-color: #2ecc71;
+}
+
+.memory-card-matched .memory-card-back {
+  background-color: #a8e6cf;
+}
+
+.memory-game-win-overlay {
+  text-align: center;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.memory-game-win-overlay h2 {
+  font-size: 2.5rem;
+  color: #2ecc71;
+  margin-bottom: 20px;
+}
+
+.memory-game-win-overlay p {
+  font-size: 1.2rem;
+  color: #34495e;
+}
+
+.memory-game-restart {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.memory-game-restart:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 600px) {
   .memory-game-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .memory-game-stats {
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
-    margin: 20px 0;
   }
-  
-  .memory-card {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 2rem;
-  }
-  
-  .memory-card-hidden {
-    background-color: #4a90e2;
-  }
-  
-  .memory-card-flipped {
-    background-color: white;
-  }
-  
-  .memory-card-matched {
-    background-color: gray;
-    cursor: default;
-  }
-  
-  .memory-game-restart {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .memory-game-restart:hover {
-    background-color: #357abd;
-  }
-  
-  .memory-game-win-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 2rem;
-  }
+}
