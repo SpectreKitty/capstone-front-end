@@ -17,6 +17,7 @@ import {
   GardenWeedingScene
 } from "../scenes/SceneBase"; 
 import SceneTransition from "../transitions/SceneTransition";
+import Credits from '../scenes/Credits';
 import DayTransition from "../transitions/DayTransition";
 import StartMenu from "../menu/StartMenu";
 
@@ -81,6 +82,8 @@ function SceneRouter() {
       return <SarahCatchingScene />
     case 'garden_weeding':
       return <GardenWeedingScene />
+    case 'credits':
+      return <Credits />
     default:
       return <StartMenu />;
   }

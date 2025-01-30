@@ -11,7 +11,6 @@
     z-index: 50;
   }
   
-  
   .game-area {
     position: relative;
     height: 24rem;
@@ -46,8 +45,6 @@
     transform: translateX(-50%);
     transition: left 100ms ease;
   }
-  
-  
   
   .game-over-overlay {
     position: absolute;
@@ -87,10 +84,12 @@
     background-color: #2563eb;
   }
   
-  .instructions {
+  .catching-game-container .game-area .instructions {
     position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    color: white;
+    top: 4rem;
+    left: 50%;
+    background-color: none;
+    background: none;
     font-size: 0.875rem;
+    color: white;
   }

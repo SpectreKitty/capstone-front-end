@@ -1,7 +1,8 @@
 import { useState } from "react";
-import LogoutButton from "../common/LogoutButton";
-import SaveLoadMenu from '../common/SaveLoadMenu';
+import LogoutButton from "../menu/LogoutButton";
+import SaveLoadMenu from '../menu/SaveLoadMenu';
 import { useGameState } from "../../contexts/GameStateContext";
+import BackgroundMusic from "../common/BackgroundMusic";
 
 
 function GameLayout ({ children }) {
@@ -12,6 +13,7 @@ function GameLayout ({ children }) {
     <>
     {gameState.isLoggedIn && gameState.currentScene !== 'menu' && (
         <>
+        <BackgroundMusic />
           <LogoutButton />
           <button 
               className="save-load-button"

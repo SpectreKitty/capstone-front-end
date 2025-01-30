@@ -1,6 +1,6 @@
 import morningImage from '/src/assets/images/backgrounds/bedroom.png';
 import nightImage from '/src/assets/images/backgrounds/bedroom_night.png';
-import communityBoardImage from '/src/assets/images/backgrounds/community_board.jpg';
+import communityBoardImage from '/src/assets/images/backgrounds/community_board.jpeg';
 import defaultImage from '/src/assets/images/backgrounds/start_img.jpeg';
 
 // Background types for reusable scenes

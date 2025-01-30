@@ -30,7 +30,11 @@ export const SceneBase = ({ sceneId }) => {
     } else {
       // Check if we're in day3_night (final scene)
       if (sceneId === 'day3_night') {
-        // Don't transition anywhere - it's the end of the game
+        // Transition to credits
+        updateGameState({
+          currentScene: 'credits',
+          dialogueIndex: 0
+        });
         return;
       }
   
