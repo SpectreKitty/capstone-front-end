@@ -11,7 +11,7 @@ function GameLayout ({ children }) {
 
   return (
     <>
-    {gameState.isLoggedIn && gameState.currentScene !== 'menu' && (
+    {gameState.isLoggedIn && (
         <>
         <BackgroundMusic />
           <LogoutButton />
