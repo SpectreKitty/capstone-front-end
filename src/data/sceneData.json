@@ -448,9 +448,14 @@
         "sequence": 1
       },
       {
+        "character": "Main Character",
+        "text": "Let's decide what our focus for today will be!",
+        "sequence": 2
+      },
+      {
         "character": "Narrator",
         "text": "Choose your daily affirmation:",
-        "sequence": 2,
+        "sequence": 3,
         "choices": [
           {
             "id": "affirmation1",

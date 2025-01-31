@@ -1,0 +1,33 @@
+.character-portrait-container {
+    position: fixed;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    z-index: 90;
+  }
+  
+  .character-portrait-container.right {
+    left: 90%;
+    bottom: 0;
+  }
+  
+  .character-portrait-container.left {
+    left: 10%;
+    bottom: 0;
+  }
+  
+  .character-portrait-image {
+    width: 25rem;
+    height: 25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+  
+  .character-portrait-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .character-portrait-image.dimmed {
+    opacity: 0.8;
+  }
+  
