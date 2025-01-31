@@ -1,6 +1,6 @@
 .dialogue-container {
   position: fixed;
-  bottom: 2rem;  /* Distance from bottom of screen */
+  bottom: 2rem;  
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -13,14 +13,33 @@
 }
 
 .character-name {
-  color: #ffd700;
   margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
+.main-character-text {
+  color: purple;
+}
+
+.mr.-chen-text {
+  color: green;
+}
+
+.sarah-text {
+  color: blue;
+}
+
+.rose-text {
+  color: rosybrown;
+}
+
+.mysterious-stranger-text {
+  color: black;
+}
+
 .dialogue-text {
   line-height: 1.6;
   font-size: 1.1rem;
-  white-space: pre-wrap; /* Preserves line breaks and spaces */
+  white-space: pre-wrap;
 }

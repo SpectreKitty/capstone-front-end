@@ -43,8 +43,8 @@
           "sequence": 3
         },
         {
-          "character": "Main Character(reads flyer)",
-          "text": "Missing Cat: Olive. Last seen near Maple Street. Please call if found.",
+          "character": "Main Character",
+          "text":  "Reading Flyer: Missing Cat: Olive. Last seen near Maple Street. Please call if found.",
           "sequence": 4
         },
         {
@@ -99,7 +99,7 @@
           "sequence": 5
         },
         {
-          "character": "Main Character(softly)",
+          "character": "Main Character",
           "text": "There you are, Olive. Hey, sweet girl... It's ok. I'm not going to hurt you.",
           "sequence": 6
         },
@@ -115,7 +115,7 @@
           "sequence": 8
         },
         {
-          "character": "Main Character(kneeling down and extending a hand)",
+          "character": "Main Character",
           "text": "You're scared, huh? It's alright. Let's get you home!",
           "sequence": 9
         },
@@ -150,7 +150,7 @@
           "sequence": 15
         },
         {
-          "character": "Rose(as she reaches out to take Olive)",
+          "character": "Rose",
           "text": "Thank you so much! I've been so worried. You're a lifesaver!",
           "sequence": 16
         },
@@ -165,7 +165,7 @@
           "sequence": 18
         },
         {
-          "character": "Main Character(accepting the delicious looking plate of cookies from Rose)",
+          "character": "Main Character",
           "text": "Thank you! I'm glad Olive's safe. Let me know if there's ever anything else I can do to help.",
           "sequence": 19
         },

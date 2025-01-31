@@ -15,14 +15,22 @@ export default function Dialogue({ text, character, onComplete }) {
     setIsComplete(false);
   }, [text]);
 
+  const getClassName = (name) => {
+    return name.toLowerCase().replace(/\s+/g, '-');
+  };
 
-	return (
-		<div
-			className="dialogue-container" onClick={handleClick}>
-			{character && (
-				<div className="character-name">{character}</div>
-			)}
-		<div className="dialogue-text">{text}</div>
-	</div>
-	);
-}
+  return (
+    <div className="dialogue-container relative" onClick={handleClick}>
+      <div className="dialogue-content">
+        {character && (
+          <div className={`character-name ${getClassName(character)}-text`}>
+            {character}
+          </div>
+        )}
+        <div className="dialogue-text">
+          {text}
+        </div>
+      </div>
+      </div>
+    );
+  }
