@@ -19,8 +19,18 @@ const Credits = () => {
       items: [
         "Created by",
         "Astry Brana",
-        "Art Assets by",
-        ""
+      ]
+    },
+    {
+      section: "Art Assets by:",
+      items: [
+        "Lynocs", "Two Orcs", "OpenAI"
+      ]
+    },
+    {
+      section: "Music by",
+      items: [
+        "xDeviruchi"
       ]
     },
     {
@@ -29,13 +39,13 @@ const Credits = () => {
         "To My Husband, who was always there to help me push forward",
         "To The Amazing ADA Community",
         "Both all my amazing classmates and the great instructors",
-        "To my Amazing Frei"
+        "To my Amazing Friends and Family"
       ]
     }
   ];
 
   useEffect(() => {
-    const totalDuration = 12000; // 12 seconds total
+    const totalDuration = 18000; // 18 seconds total
     const interval = 50; // Update every 50ms
     const step = 100 / (totalDuration / interval); // Calculate step size for smooth scroll
 

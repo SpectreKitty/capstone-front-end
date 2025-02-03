@@ -14,9 +14,11 @@ const CHARACTER_CONFIG = {
   },
   "Mr. Chen": {
     image: mrChenImage,
+    shouldFlip: true,
   },
   "Rose": {
     image: roseImage,
+    shouldFlip: true,
   },
   "Mysterious Stranger": {
     image: mysteriousStranger,
@@ -26,16 +28,17 @@ const CHARACTER_CONFIG = {
 const CharacterPortrait = ({ character, position = 'right', isSpeaking = true }) => {
   if (!character || character === "Narrator" || !CHARACTER_CONFIG[character]) return null;
 
-  const getClassName = (name) => {
-    return name.toLowerCase().replace(/\s+/g, '-');
-  };
+  const characterConfig = CHARACTER_CONFIG[character];
+  const shouldFlipImage = characterConfig.shouldFlip;
 
   return (
     <div className={`character-portrait-container ${position}`}>
       <img 
         src={CHARACTER_CONFIG[character].image}
         alt={character}
-        className={`character-portrait-image ${getClassName(character)}-border ${!isSpeaking ? 'dimmed' : ''}`}
+        className={`character-portrait-image 
+          ${!isSpeaking ? 'dimmed' : ''} 
+          ${shouldFlipImage ? 'flipped' : ''}`}
       />
     </div>
   );

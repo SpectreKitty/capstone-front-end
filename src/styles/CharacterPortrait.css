@@ -5,6 +5,10 @@
     z-index: 90;
   }
   
+  .flipped {
+    transform: scaleX(-1);
+  }
+
   .character-portrait-container.right {
     left: 90%;
     bottom: 0;

@@ -22,8 +22,8 @@
   color: purple;
 }
 
-.mr.-chen-text {
-  color: green;
+.mr-chen-text {
+  color: green !important;
 }
 
 .sarah-text {
@@ -42,4 +42,23 @@
   line-height: 1.6;
   font-size: 1.1rem;
   white-space: pre-wrap;
+}
+
+.continue-indicator {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: #ffd700;
+  animation: bounce 1s infinite;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }

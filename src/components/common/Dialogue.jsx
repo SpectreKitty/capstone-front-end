@@ -16,8 +16,11 @@ export default function Dialogue({ text, character, onComplete }) {
   }, [text]);
 
   const getClassName = (name) => {
-    return name.toLowerCase().replace(/\s+/g, '-');
+    if (!name) return '';
+    // First replace period and space with single hyphen
+    return name.toLowerCase().replace(/[.\s]+/g, '-');
   };
+  
 
   return (
     <div className="dialogue-container relative" onClick={handleClick}>
@@ -29,6 +32,9 @@ export default function Dialogue({ text, character, onComplete }) {
         )}
         <div className="dialogue-text">
           {text}
+        </div>
+        <div className="continue-indicator">
+            ▼
         </div>
       </div>
       </div>
