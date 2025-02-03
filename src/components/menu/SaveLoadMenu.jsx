@@ -22,7 +22,8 @@ export default function SaveLoadMenu({ onClose }) {
     setIsLoading(false);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
     if (!saveName.trim()) {
       setMessage('Please enter a save name');
       return;
@@ -64,15 +65,16 @@ export default function SaveLoadMenu({ onClose }) {
         
         <div className="save-section">
           <h3>Save Game</h3>
-          <div className="save-input">
+          <form onSubmit={handleSave} className="save-input">
             <input
               type="text"
               value={saveName}
               onChange={(e) => setSaveName(e.target.value)}
               placeholder="Enter save name"
+              autoFocus
             />
-            <button onClick={handleSave}>Save</button>
-          </div>
+            <button type="submit">Save</button>
+          </form>
         </div>
 
         <div className="load-section">
