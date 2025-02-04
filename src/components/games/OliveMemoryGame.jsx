@@ -1,4 +1,3 @@
-// OliveMemoryGame.jsx
 import { useState, useEffect, useCallback } from 'react';
 import '../../styles/OliveMemoryGame.css';
 

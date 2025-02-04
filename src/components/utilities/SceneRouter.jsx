@@ -1,10 +1,11 @@
-import { useGameState } from "../../contexts/GameStateContext";
+import { useGameState } from '../../contexts/GameStateContext';
+import { useSceneTransition } from '../../hooks/useSceneTransition';
 import { 
-  Day1MorningScene, 
-  Day1CommunityBoardScene, 
-  Day1InteractionScene, 
+  Day1MorningScene,
+  Day1CommunityBoardScene,
+  Day1InteractionScene,
   Day1NightScene,
-  Day2MorningScene, 
+  Day2MorningScene,
   Day2CommunityBoardScene,
   Day2InteractionScene,
   Day2NightScene,
@@ -15,41 +16,33 @@ import {
   OliveMemoryGameScene,
   SarahCatchingScene,
   GardenWeedingScene
-} from "../scenes/SceneBase"; 
+} from '../scenes/SceneBase';
+import DayTransition from "../transitions/DayTransition";
 import SceneTransition from "../transitions/SceneTransition";
 import Credits from '../scenes/Credits';
-import DayTransition from "../transitions/DayTransition";
-import StartMenu from "../menu/StartMenu";
+import StartMenu from '../menu/StartMenu';
 
 function SceneRouter() {
   const { gameState, updateGameState } = useGameState();
-
-  const startDayTransition = (nextDay) => {
-    updateGameState({
-      currentScene: 'day_transition',
-      transitionData: {
-        day: nextDay, 
-        nextScene: `day${nextDay}_morning`
-      }
-    });
-  };
+  const { startDayTransition } = useSceneTransition();
 
   switch(gameState.currentScene) {
     // Day transitions
     case 'day1_night':
       return <Day1NightScene onComplete={() => startDayTransition('2')} />;
     case 'day2_night':
-      return <Day2NightScene onComplete={() => startDayTransition('3')} />
+      return <Day2NightScene onComplete={() => startDayTransition('3')} />;
     case 'day_transition':
       return (
         <DayTransition
           day={gameState.transitionData.day}
           onComplete={() => updateGameState({
             currentScene: gameState.transitionData.nextScene,
-            dialogueIndex: 0
+            dialogueIndex: 0,
+            lastChoice: null
           })}
         />
-      )
+      );
     // Regular scenes
     case 'transition':
       return <SceneTransition
@@ -77,13 +70,13 @@ function SceneRouter() {
     case 'day3_night':
       return <Day3NightScene />;
     case 'olive_memory':
-      return <OliveMemoryGameScene />
+      return <OliveMemoryGameScene />;
     case 'sarah_catching':
-      return <SarahCatchingScene />
+      return <SarahCatchingScene />;
     case 'garden_weeding':
-      return <GardenWeedingScene />
+      return <GardenWeedingScene />;
     case 'credits':
-      return <Credits />
+      return <Credits />;
     default:
       return <StartMenu />;
   }

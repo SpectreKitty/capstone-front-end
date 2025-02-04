@@ -1,30 +1,23 @@
-import { useState } from "react";
+import { useAuth} from '../../contexts/AuthContext';
+import { useGameUI } from '../../contexts/GameUIContext'
 import LogoutButton from "../menu/LogoutButton";
 import SaveLoadMenu from '../menu/SaveLoadMenu';
-import { useGameState } from "../../contexts/GameStateContext";
 import BackgroundMusic from "../common/BackgroundMusic";
 import sceneData from '../../data/sceneData.json';
 import CharacterPortrait from "../common/CharacterPortrait";
+import { useGameProgress, useDialogue } from '../../contexts';
 
-function GameLayout({ children }) {
-  const [showSaveLoad, setShowSaveLoad] = useState(false);
-  const { gameState } = useGameState();
+export default function GameLayout({ children }) {
+  const { showSaveLoad, setShowSaveLoad } = useGameUI();
+  const { isLoggedIn } = useAuth();
+  const { currentScene } = useGameProgress();
+  const { currentDialogue } = useDialogue();
 
-  // Get current dialogue and next dialogue from scene data if available
-  const currentDialogue = gameState.dialogueIndex !== undefined && gameState.currentScene
-    ? sceneData.scenes[gameState.currentScene]?.dialogues[gameState.dialogueIndex]
-    : null;
-
-  // Check if current dialogue is a game segment
   const isGameSegment = () => {
     return currentDialogue?.type === 'game';
   };
 
-
-  
-  // Function to determine the fixed position for each character
   const getCharacterPosition = (character) => {
-    // Add character positions here based on your game's characters
     switch(character) {
       case "Main Character":
         return "left";
@@ -33,17 +26,15 @@ function GameLayout({ children }) {
     }
   };
 
-  // Function to check if character is currently speaking
   const isCharacterSpeaking = (character) => {
     return currentDialogue?.character === character;
   };
 
-  // Get all unique characters in the current scene
   const getCurrentSceneCharacters = () => {
-    if (!gameState.currentScene || !sceneData.scenes[gameState.currentScene]) return [];
+    if (!currentScene || !sceneData.scenes[currentScene]) return [];
     
     const characters = new Set();
-    sceneData.scenes[gameState.currentScene].dialogues.forEach(dialogue => {
+    sceneData.scenes[currentScene].dialogues.forEach(dialogue => {
       if (dialogue.character && dialogue.character !== "Narrator") {
         characters.add(dialogue.character);
       }
@@ -53,7 +44,7 @@ function GameLayout({ children }) {
 
   return (
     <>
-      {gameState.isLoggedIn && (
+      {isLoggedIn && (
         <>
           <BackgroundMusic />
           <LogoutButton />
@@ -67,7 +58,6 @@ function GameLayout({ children }) {
         </>
       )}
 
-      {/* Render all characters in the scene */}
       {!isGameSegment() && getCurrentSceneCharacters().map(character => (
         <CharacterPortrait 
           key={character}
@@ -81,5 +71,3 @@ function GameLayout({ children }) {
     </>
   );
 }
-
-export default GameLayout;
