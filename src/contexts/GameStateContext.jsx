@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-//Firebase authentication and Firestore imports
 import { 
   signInWithEmailAndPassword, 
   signInAnonymously as firebaseSignInAnonymously, 
@@ -10,11 +9,9 @@ import { auth } from '../firebase/firebase';
 import { db } from '../firebase/firebase';
 import { collection, addDoc, getDoc, getDocs, doc, query, where, orderBy, deleteDoc } from 'firebase/firestore';
 
-//creates context for game state management 
-//so data doesn't need to be brought in through props
-const GameStateContext = createContext();
+const GameStateContext = createContext(null);
 
-export function GameStateProvider({ children }) {
+export const GameStateProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
     currentScene: 'menu',
     currentDay: 1,
@@ -30,10 +27,9 @@ export function GameStateProvider({ children }) {
     isLoggedIn: false
   })
 
-//Listens for firebase authentication state changes
   useEffect(() => {
-    //updates game state based on auth status
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log("Auth state changed:", user);
       if (user) {
         updateGameState({
           user: user,
@@ -50,7 +46,6 @@ export function GameStateProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-// Handles firebase email/password login
   const login = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -64,7 +59,6 @@ export function GameStateProvider({ children }) {
     }
   };
 
-// Handles creating a new account
   const register = async (email, password) => {
     try {
       const userCredential =  await createUserWithEmailAndPassword(auth, email, password);
@@ -78,7 +72,6 @@ export function GameStateProvider({ children }) {
     }
   };
 
-// Handles logout
   const logout = async () => {
     try {
       await signOut(auth);
@@ -93,7 +86,6 @@ export function GameStateProvider({ children }) {
     }
   };
 
-// Handles anonymous authentication
   const signInAnonymously = async () => {
     try {
       const result = await firebaseSignInAnonymously(auth);
@@ -111,9 +103,9 @@ export function GameStateProvider({ children }) {
     setGameState(prev => ({ ...prev, ...updates}));
   };
 
-//Handles saving a game and ties it to userId
   const saveGame = async (saveName) => {
     try {
+      console.log('User ID:', gameState.user?.uid);
       const saveData = {
         userId: gameState.user.uid,
         saveName, 
@@ -134,9 +126,9 @@ export function GameStateProvider({ children }) {
     }
   };
 
-//Handles loading a save based on userId
   const loadSaves = async () => {
     try {
+      console.log('Querying saves for User ID:', gameState.user.uid);
       const savesRef = collection(db, 'saves');
       const q = query(
         savesRef,
@@ -145,9 +137,11 @@ export function GameStateProvider({ children }) {
       );
 
       const querySnapshot = await getDocs(q);
+      console.log('Query snapshot size:', querySnapshot.size);
       const saves = [];
       querySnapshot.forEach((doc) => {
         const saveData = { id: doc.id, ...doc.data() }
+        console.log('Individual save:', saveData);
         saves.push(saveData);
       });
 
@@ -158,7 +152,6 @@ export function GameStateProvider({ children }) {
     }
   };
 
-// brings up an already saved game
   const loadGame = async (saveId) => {
     try {
       const docRef = doc(db, 'saves', saveId);
@@ -175,7 +168,6 @@ export function GameStateProvider({ children }) {
     }
   };
 
-// deletes a save
   const deleteSave = async (saveId) => {
     try {
       // Delete the save from the database
@@ -188,22 +180,16 @@ export function GameStateProvider({ children }) {
   };
 
   return (
-
-      <GameStateContext.Provider value = {{ 
-        gameState, 
-        updateGameState,
-        login,
-        register,
-        signInAnonymously,
-        logout,
-        saveGame,
-        loadSaves,
-        loadGame,
-        deleteSave
-        }}>
+    <GameStateContext.Provider value={value}>
       {children}
     </GameStateContext.Provider>
   );
-}
+};
 
-export const useGameState = () => useContext(GameStateContext);
+export const useGameState = () => {
+  const context = useContext(GameStateContext);
+  if (!context) {
+    throw new Error('useGameState must be used within a GameStateProvider');
+  }
+  return context;
+};

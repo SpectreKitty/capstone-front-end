@@ -1,120 +1,95 @@
-import { useGameState } from "../../contexts/GameStateContext";
+import { useGameState } from '../../contexts/GameStateContext';
+import { useDialogue } from '../../hooks/useDialogue';
+import { useSceneTransition } from '../../hooks/useSceneTransition';
 import Dialogue from '../common/Dialogue';
-import Background from "../common/Background";
-import { sceneBackgrounds, BACKGROUNDS } from "../utilities/SceneConfiguration";
-import sceneData from '../../data/sceneData.json';
+import Background from '../common/Background';
+import { sceneBackgrounds, BACKGROUNDS } from '../utilities/SceneConfiguration';
 import Choices from '../common/Choices';
 import OliveMemoryGame from '../games/OliveMemoryGame';
 import SarahCatchingGame from '../games/SarahCatchingGame';
-import GardenWeedingGame from "../games/GardenWeedingGame";
-import '../../styles/Scene.css';
+import GardenWeedingGame from '../games/GardenWeedingGame';
+import sceneData from '../../data/sceneData.json';
 
 export const SceneBase = ({ sceneId }) => {
   const { gameState, updateGameState } = useGameState();
+  const { currentDialogue, advanceDialogue, handleChoice } = useDialogue();
+  const { transitionToScene, startDayTransition } = useSceneTransition();
+
   const scene = sceneData.scenes[sceneId];
-  const currentDialogue = scene.dialogues[gameState.dialogueIndex];
 
   const handleGameComplete = () => {
-    updateGameState({
-      dialogueIndex: gameState.dialogueIndex + 1,
-      lastChoice: null
-    });
+    advanceDialogue();
   };
 
   const handleDialogueComplete = () => {
-    if (gameState.dialogueIndex < scene.dialogues.length - 1) {
-      updateGameState({
-        dialogueIndex: gameState.dialogueIndex + 1,
-        lastChoice: null
-      });
-    } else {
-      // Check if we're in day3_night (final scene)
+    const hasMoreDialogue = advanceDialogue();
+    
+    if (!hasMoreDialogue) {
+      // No more dialogue, handle scene transition
       if (sceneId === 'day3_night') {
-        // Transition to credits
         updateGameState({
           currentScene: 'credits',
-          dialogueIndex: 0
+          dialogueIndex: 0,
+          lastChoice: null,
         });
         return;
       }
-  
+
       const currentDay = sceneId.match(/day(\d)/)?.[1];
       const nextDay = scene.nextScene.match(/day(\d)/)?.[1];
-  
-      // Handle day transitions for other night scenes
+
+      // Check for day transition first
       if (sceneId.endsWith('_night') && nextDay !== currentDay && currentDay !== "3") {
-        updateGameState({
-          currentScene: 'day_transition',
-          transitionData: {
-            day: nextDay,
-            nextScene: scene.nextScene
-          },
-          lastChoice: null
-        });
-      } else {
-        updateGameState({
-          currentScene: 'transition',
-          transitionData: {
-            nextScene: scene.nextScene,
-            transitionText: 'Later...'
-          },
-          lastChoice: null
-        });
-      }
+        startDayTransition(nextDay);
+        return; // Important: return here to prevent the regular transition
+      } 
+      // Only reach here if it's not a day transition
+      transitionToScene(scene.nextScene);
     }
   };
 
-  const handleChoice = (choice) => {
-    if (currentDialogue.choices) {
-      updateGameState({
-        dialogueIndex: gameState.dialogueIndex + 1,
-        lastChoice: choice
-      });
-    }
-  };
 
-    if (gameState.lastChoice) {
-      return (
-        <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
-          <Dialogue
-            {...gameState.lastChoice.response}
-            onComplete={handleDialogueComplete}
-          />
-        </Background>
-      );
+  // Handle last choice display
+  if (gameState.lastChoice) {
+    return (
+      <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
+        <Dialogue
+          {...gameState.lastChoice.response}
+          onComplete={handleDialogueComplete}
+        />
+      </Background>
+    );
+  }
+
+  // Handle game segments
+  if (currentDialogue?.type === 'game') {
+    let GameComponent;
+    switch(sceneId) {
+      case 'day1_interaction':
+        GameComponent = OliveMemoryGame;
+        break;
+      case 'day2_interaction':
+        GameComponent = GardenWeedingGame;
+        break;
+      case 'day3_interaction':
+        GameComponent = SarahCatchingGame;
+        break;
+      default:
+        GameComponent = null;
     }
 
-    if (currentDialogue.type === 'game') {
-      // Determine which game to render based on the scene
-      let GameComponent;
-      switch(sceneId) {
-        case 'day1_interaction':
-          GameComponent = OliveMemoryGame;
-          break;
-        case 'day2_interaction':
-          GameComponent = GardenWeedingGame;
-          break;
-        case 'day3_interaction':
-          GameComponent = SarahCatchingGame;
-          break;
-        default:
-          // Fallback to a default game or null
-          GameComponent = null;
-      }
-    
-      // Render the game if a component is found
-      return GameComponent ? (
-        <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
-          <GameComponent onGameComplete={handleGameComplete} />
-        </Background>
-      ) : null;
-    }
-    
+    return GameComponent ? (
+      <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
+        <GameComponent onGameComplete={handleGameComplete} />
+      </Background>
+    ) : null;
+  }
 
+  // Handle regular dialogue and choices
   return (
     <Background imageSrc={sceneBackgrounds[sceneId] || BACKGROUNDS.DEFAULT}>
       <div className="w-full px-4">
-        {currentDialogue.choices ? (
+        {currentDialogue?.choices ? (
           <>
             <Choices
               choices={currentDialogue.choices}
@@ -125,11 +100,6 @@ export const SceneBase = ({ sceneId }) => {
               character={currentDialogue.character}
             />
           </>
-        ) : gameState.lastChoice ? (
-          <Dialogue
-            {...gameState.lastChoice.response}
-            onComplete={handleDialogueComplete}
-          />
         ) : (
           <Dialogue
             {...currentDialogue}
@@ -141,6 +111,7 @@ export const SceneBase = ({ sceneId }) => {
   );
 };
 
+// Scene exports
 export const Day1MorningScene = () => <SceneBase sceneId="day1_morning" />;
 export const Day1CommunityBoardScene = () => <SceneBase sceneId="day1_community_board" />;
 export const Day1InteractionScene = () => <SceneBase sceneId="day1_interaction" />;

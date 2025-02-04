@@ -1,59 +1,72 @@
 import { useState, useEffect } from 'react';
+import { useSave } from '../../contexts/SaveContext';
+import { useGameUI } from '../../contexts/GameUIContext';
 import { useGameState } from '../../contexts/GameStateContext';
 import '../../styles/SaveLoadMenu.css';
 
 export default function SaveLoadMenu({ onClose }) {
-  const { saveGame, loadSaves, loadGame, deleteSave } = useGameState();
-  const [saveName, setSaveName] = useState('');
   const [saves, setSaves] = useState([]);
+  const [saveName, setSaveName] = useState('');
   const [message, setMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  
+  const { saveGame, loadSaves, loadGame, deleteSave } = useSave();
+  const { isLoading, showError, startLoading, stopLoading } = useGameUI();
+  const { gameState } = useGameState();
 
   useEffect(() => {
     fetchSaves();
   }, []);
 
   const fetchSaves = async () => {
-    setIsLoading(true);
+    startLoading();
     const result = await loadSaves();
     if (result.success) {
       setSaves(result.saves);
+    } else {
+      showError(result.error);
     }
-    setIsLoading(false);
+    stopLoading();
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
     if (!saveName.trim()) {
-      setMessage('Please enter a save name');
+      showError('Please enter a save name');
       return;
     }
 
-    const result = await saveGame(saveName);
-    setMessage(result.message || result.error);
+    const result = await saveGame(saveName, gameState);
     if (result.success) {
       setSaveName('');
-      fetchSaves();
+      setMessage('Game saved successfully!');
+      await fetchSaves();
+    } else {
+      showError(result.error);
     }
   };
 
   const handleLoad = async (saveId) => {
+    startLoading();
     const result = await loadGame(saveId);
-    if (!result.success) {
-      setMessage(result.error);
+    if (result.success) {
+      setMessage('Game loaded successfully!');
+      setTimeout(() => {
+        onClose();
+      }, 500); //small delay to show success message
     } else {
-      onClose();
+      showError(result.error);
     }
+    stopLoading();
   };
 
   const handleDelete = async (saveId) => {
     if (window.confirm('Are you sure you want to delete this save?')) {
       const result = await deleteSave(saveId);
       if (result.success) {
-        fetchSaves();
+        await fetchSaves();
         setMessage('Save deleted successfully');
       } else {
-        setMessage(result.error);
+        showError(result.error);
       }
     }
   };
@@ -87,6 +100,7 @@ export default function SaveLoadMenu({ onClose }) {
                 <div key={save.id} className="save-item">
                   <div>
                     <div className="save-name">{save.saveName}</div>
+                    <div className="save-timestamp">{new Date(save.timestamp).toLocaleString()}</div>
                   </div>
                   <button onClick={() => handleLoad(save.id)}>Load</button>
                   <button onClick={() => handleDelete(save.id)} className='delete-button'>Delete</button>

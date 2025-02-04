@@ -1,22 +1,14 @@
-import SceneRouter from "./components/utilities/SceneRouter";
-import { GameStateProvider, useGameState } from "./contexts/GameStateContext";
+import { GameProviders } from './components/providers/GameProviders';
 import GameLayout from "./components/utilities/GameLayout";
-import Login from '../src/components/menu/Login';
-
-
-function GameContent() {
-  const { gameState } = useGameState();
-  return !gameState.isLoggedIn ? <Login /> : <SceneRouter />;
-}
+import GameContent from './components/common/GameContent';
 
 function App() {
-
   return (
-    <GameStateProvider>
+    <GameProviders>
       <GameLayout>
         <GameContent />
       </GameLayout>
-    </GameStateProvider>
+    </GameProviders>
   );
 }
 

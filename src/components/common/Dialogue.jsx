@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useDialogue } from '../../hooks/useDialogue';
+import { useEffect, useState } from 'react';
 import '../../styles/Dialogue.css';
 
 export default function Dialogue({ text, character, onComplete }) {
   const [isComplete, setIsComplete] = useState(false);
-
+  const { advanceDialogue } = useDialogue();
+  
   const handleClick = () => {
     if (!isComplete) {
       setIsComplete(true);
+      advanceDialogue();
       onComplete?.();
-  }
-};
+    }
+  };
 
   useEffect(() => {
     setIsComplete(false);
@@ -21,7 +24,6 @@ export default function Dialogue({ text, character, onComplete }) {
     return name.toLowerCase().replace(/[.\s]+/g, '-');
   };
   
-
   return (
     <div className="dialogue-container relative" onClick={handleClick}>
       <div className="dialogue-content">
@@ -34,9 +36,9 @@ export default function Dialogue({ text, character, onComplete }) {
           {text}
         </div>
         <div className="continue-indicator">
-            ▼
+          ▼
         </div>
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
