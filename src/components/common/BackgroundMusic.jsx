@@ -32,8 +32,6 @@ const BackgroundMusic = () => {
 
   useEffect(() => {
     const currentTrack = musicTracks[gameState.currentScene];
-    console.log('Current scene:', gameState.currentScene);
-    console.log('Current track:', currentTrack);
 
     if (currentTrack && audioRef.current) {
       audioRef.current.src = currentTrack;
@@ -42,7 +40,7 @@ const BackgroundMusic = () => {
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          console.log("Autoplay prevented:", error);
+          console.error("Autoplay prevented:", error);
         });
       }
     }

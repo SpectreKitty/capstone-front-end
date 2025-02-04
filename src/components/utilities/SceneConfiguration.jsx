@@ -11,23 +11,22 @@ export const BACKGROUNDS = {
   DEFAULT: defaultImage,
 };
 
-// Map each scene to its background
-export const sceneBackgrounds = {
-  // Day 1
-  day1_morning: BACKGROUNDS.MORNING,
-  day1_community_board: BACKGROUNDS.COMMUNITY_BOARD,
-  day1_interaction: BACKGROUNDS.DEFAULT,
-  day1_night: BACKGROUNDS.NIGHT,
-  
-  // Day 2
-  day2_morning: BACKGROUNDS.MORNING,
-  day2_community_board: BACKGROUNDS.COMMUNITY_BOARD,
-  day2_interaction: BACKGROUNDS.DEFAULT,
-  day2_night: BACKGROUNDS.NIGHT,
-  
-  // Day 3
-  day3_morning: BACKGROUNDS.MORNING,
-  day3_community_board: BACKGROUNDS.COMMUNITY_BOARD,
-  day3_interaction: BACKGROUNDS.DEFAULT,
-  day3_night: BACKGROUNDS.NIGHT,
+// Scene types that repeat each day
+const DAILY_SCENES = ['morning', 'community_board', 'interaction', 'night'];
+
+// Map background type to scene type
+const SCENE_TO_BACKGROUND = {
+  morning: BACKGROUNDS.MORNING,
+  community_board: BACKGROUNDS.COMMUNITY_BOARD,
+  interaction: BACKGROUNDS.DEFAULT,
+  night: BACKGROUNDS.NIGHT,
 };
+
+// Generate scene backgrounds for all days
+export const sceneBackgrounds = Array.from({ length: 3 }, (_, index) => {
+  const day = index + 1;
+  return DAILY_SCENES.reduce((acc, scene) => ({
+    ...acc,
+    [`day${day}_${scene}`]: SCENE_TO_BACKGROUND[scene]
+  }), {});
+}).reduce((acc, dayScenes) => ({ ...acc, ...dayScenes }), {});

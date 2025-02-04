@@ -1,7 +1,6 @@
 import { useGameState } from '../../contexts/GameStateContext';
 import { useState } from 'react';
 import SaveLoadMenu from '../menu/SaveLoadMenu';
-import LogoutButton from './LogoutButton';
 import bgImage from '../../assets/images/backgrounds/start_img.jpeg'
 import '../../styles/StartMenu.css';
 
