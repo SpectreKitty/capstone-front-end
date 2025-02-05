@@ -1,9 +1,11 @@
+import { useAuth} from '../../contexts/AuthContext';
+import { useGameUI } from '../../contexts/GameUIContext'
 import LogoutButton from "../menu/LogoutButton";
 import SaveLoadMenu from '../menu/SaveLoadMenu';
 import BackgroundMusic from "../common/BackgroundMusic";
 import sceneData from '../../data/sceneData.json';
 import CharacterPortrait from "../common/CharacterPortrait";
-import { useGameProgress, useDialogue, useAuth, useGameUI} from '../../contexts';
+import { useGameProgress, useDialogue } from '../../contexts';
 
 export default function GameLayout({ children }) {
   const { showSaveLoad, setShowSaveLoad } = useGameUI();
@@ -46,14 +48,12 @@ export default function GameLayout({ children }) {
         <>
           <BackgroundMusic />
           <LogoutButton />
-          {currentScene !== 'menu' && (
-            <button 
-              className="save-load-button"
-              onClick={() => setShowSaveLoad(true)}
-            >
-              Save/Load
-            </button>
-          )}
+          <button 
+            className="save-load-button"
+            onClick={() => setShowSaveLoad(true)}
+          >
+            Save/Load
+          </button>
           {showSaveLoad && <SaveLoadMenu onClose={() => setShowSaveLoad(false)} />}
         </>
       )}
@@ -69,6 +69,5 @@ export default function GameLayout({ children }) {
 
       {children}
     </>
-);
-
+  );
 }
