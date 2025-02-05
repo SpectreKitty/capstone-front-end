@@ -1,8 +1,11 @@
 .character-portrait-container {
     position: fixed;
-    top: 100%;
-    transform: translate(-50%, -50%);
+    bottom: -4rem;
     z-index: 10;
+    height: 100vh;
+    left: -4rem;
+    display: flex;
+    align-items: flex-end;
   }
   
   .flipped {
@@ -10,25 +13,21 @@
   }
 
   .character-portrait-container.right {
-    left: 90%;
-    bottom: 0;
+    right: -4rem;
+    left: auto;
   }
   
   .character-portrait-container.left {
-    left: 10%;
-    bottom: 0;
+    left: 0;
+    right: auto;
   }
   
   .character-portrait-image {
     width: 25rem;
     height: 25rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     object-fit: contain;
     transition: all 0.3s ease;
-  }
-  
-  .character-portrait-image:hover {
-    transform: scale(1.02);
+    margin-bottom: 2rem;
   }
   
   .character-portrait-image.dimmed {
