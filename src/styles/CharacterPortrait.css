@@ -1,11 +1,8 @@
 .character-portrait-container {
     position: fixed;
-    bottom: -4rem;
+    top: 65%;
+    transform: translate(-50%, -50%);
     z-index: 10;
-    height: 100vh;
-    left: -4rem;
-    display: flex;
-    align-items: flex-end;
   }
   
   .flipped {
@@ -13,13 +10,13 @@
   }
 
   .character-portrait-container.right {
-    right: -4rem;
-    left: auto;
+    left: 90%;
+    bottom: 0;
   }
   
   .character-portrait-container.left {
-    left: 0;
-    right: auto;
+    left: 10%;
+    bottom: 0;
   }
   
   .character-portrait-image {
@@ -27,7 +24,10 @@
     height: 25rem;
     object-fit: contain;
     transition: all 0.3s ease;
-    margin-bottom: 2rem;
+  }
+  
+  .character-portrait-image:hover {
+    transform: scale(1.02);
   }
   
   .character-portrait-image.dimmed {
