@@ -1,6 +1,6 @@
 .character-portrait-container {
     position: fixed;
-    top: 65%;
+    top: 75%;
     transform: translate(-50%, -50%);
     z-index: 10;
   }
