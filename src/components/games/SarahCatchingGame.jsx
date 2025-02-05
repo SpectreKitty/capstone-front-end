@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
 import '../../styles/SarahCatchingGame.css'
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const SarahCatchingGame = ({ onGameComplete }) => {
   const [score, setScore] = useState(0);

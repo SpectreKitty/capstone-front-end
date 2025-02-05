@@ -1,6 +1,6 @@
+import '../../styles/DayTransition.css'
 import { useEffect, useState } from "react";
 import { useGameState } from '../../contexts/GameStateContext';
-import '../../styles/SceneTransition.css'
 
 export default function SceneTransition({ nextScene, transitionText }) {
   const { updateGameState } = useGameState();

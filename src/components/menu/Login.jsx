@@ -1,7 +1,7 @@
+import '../../styles/Login.css'
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useGameUI } from '../../contexts/GameUIContext';
-import '../../styles/Login.css'
 
 export default function Login() {
   const [email, setEmail] = useState('');

@@ -1,6 +1,6 @@
+import '../../styles/DayTransition.css'
 import { useEffect } from 'react';
 import { BACKGROUNDS } from '../utilities/SceneConfiguration';
-import '../../styles/DayTransition.css'
 
 const DayTransition = ({ day, onComplete }) => {
   useEffect(() => {

@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
 import '../../styles/OliveMemoryGame.css';
+import { useState, useEffect, useCallback } from 'react';
 
 const generateCards = () => {
   const cardSymbols = [

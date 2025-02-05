@@ -1,7 +1,7 @@
+import '../../styles/LogoutButton.css'
 import { useAuth } from '../../contexts/AuthContext';
 import { useGameState } from '../../contexts/GameStateContext';
 import { useGameUI } from '../../contexts/GameUIContext';
-import '../../styles/LogoutButton.css'
 
 export default function LogoutButton() {
   const { logout } = useAuth();  // Get logout from AuthContext

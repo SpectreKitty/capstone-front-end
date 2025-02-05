@@ -1,8 +1,8 @@
+import '../../styles/SaveLoadMenu.css';
 import { useState, useEffect } from 'react';
 import { useSave } from '../../contexts/SaveContext';
 import { useGameUI } from '../../contexts/GameUIContext';
 import { useGameState } from '../../contexts/GameStateContext';
-import '../../styles/SaveLoadMenu.css';
 
 export default function SaveLoadMenu({ onClose }) {
   const [saves, setSaves] = useState([]);

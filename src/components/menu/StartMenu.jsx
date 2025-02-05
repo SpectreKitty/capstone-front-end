@@ -1,9 +1,9 @@
+import '../../styles/StartMenu.css';
 import { useGameState } from '../../contexts/GameStateContext';
 import { useGameUI } from '../../contexts/GameUIContext';
 import { useAuth } from '../../contexts/AuthContext';
 import SaveLoadMenu from '../menu/SaveLoadMenu';
 import bgImage from '../../assets/images/backgrounds/start_img.jpeg'
-import '../../styles/StartMenu.css';
 
 export default function StartMenu() {
   const { updateGameState, gameState } = useGameState();

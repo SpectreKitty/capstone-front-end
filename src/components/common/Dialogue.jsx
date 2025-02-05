@@ -1,6 +1,6 @@
+import '../../styles/Dialogue.css';
 import { useDialogue } from '../../hooks/useDialogue';
 import { useEffect, useState } from 'react';
-import '../../styles/Dialogue.css';
 
 export default function Dialogue({ text, character, onComplete }) {
   const [isComplete, setIsComplete] = useState(false);

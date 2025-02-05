@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import '../../styles/GardenWeedingGame.css';
+import { useState, useEffect } from 'react';
 
 const GardenWeedingGame = ({ onGameComplete }) => {
   const [weeds, setWeeds] = useState([]);

@@ -1,5 +1,5 @@
-import { BACKGROUNDS } from '../utilities/SceneConfiguration';
 import '../../styles/Background.css';
+import { BACKGROUNDS } from '../utilities/SceneConfiguration';
 
 const Background = ({ imageSrc, children }) => {
   const backgroundImage = imageSrc || BACKGROUNDS.DEFAULT;

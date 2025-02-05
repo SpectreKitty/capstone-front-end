@@ -1,8 +1,8 @@
+import '../../styles/Credits.css';
 import { useEffect, useState } from 'react';
 import { useGameState } from '../../contexts/GameStateContext';
 import Background from '../common/Background';
 import { BACKGROUNDS } from '../utilities/SceneConfiguration';
-import '../../styles/Credits.css';
 
 const Credits = () => {
   const { updateGameState } = useGameState();
