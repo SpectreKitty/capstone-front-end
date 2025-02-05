@@ -1,11 +1,9 @@
-import { useAuth} from '../../contexts/AuthContext';
-import { useGameUI } from '../../contexts/GameUIContext'
 import LogoutButton from "../menu/LogoutButton";
 import SaveLoadMenu from '../menu/SaveLoadMenu';
 import BackgroundMusic from "../common/BackgroundMusic";
 import sceneData from '../../data/sceneData.json';
 import CharacterPortrait from "../common/CharacterPortrait";
-import { useGameProgress, useDialogue } from '../../contexts';
+import { useGameProgress, useDialogue, useAuth, useGameUI} from '../../contexts';
 
 export default function GameLayout({ children }) {
   const { showSaveLoad, setShowSaveLoad } = useGameUI();
