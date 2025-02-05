@@ -1,6 +1,6 @@
 .character-portrait-container {
     position: fixed;
-    top: 75%;
+    top: 65%;
     transform: translate(-50%, -50%);
     z-index: 10;
   }
@@ -25,7 +25,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     object-fit: contain;
     transition: all 0.3s ease;
-    z-index:
   }
   
   .character-portrait-image:hover {
