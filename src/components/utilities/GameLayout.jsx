@@ -48,12 +48,14 @@ export default function GameLayout({ children }) {
         <>
           <BackgroundMusic />
           <LogoutButton />
-          <button 
-            className="save-load-button"
-            onClick={() => setShowSaveLoad(true)}
-          >
-            Save/Load
-          </button>
+          {currentScene !== 'menu' && (
+            <button 
+              className="save-load-button"
+              onClick={() => setShowSaveLoad(true)}
+            >
+              Save/Load
+            </button>
+          )}
           {showSaveLoad && <SaveLoadMenu onClose={() => setShowSaveLoad(false)} />}
         </>
       )}
@@ -69,5 +71,6 @@ export default function GameLayout({ children }) {
 
       {children}
     </>
-  );
+);
+
 }
