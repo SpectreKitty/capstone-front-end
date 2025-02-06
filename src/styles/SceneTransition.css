@@ -4,12 +4,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../assets/images/backgrounds/start_img.jpeg');
+    background-image: url('/assets/images/backgrounds/start_img.jpeg');
     background-size: cover;
     background-position: center;
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: overlay;
     transition: opacity 1s ease-in-out;
+    z-index: 100;
   }
   
   .transition-text {
