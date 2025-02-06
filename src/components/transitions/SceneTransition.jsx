@@ -1,7 +1,7 @@
 import '../../styles/SceneTransition.css'
 import { useEffect, useState } from "react";
 import { useGameState } from '../../contexts/GameStateContext';
-import startImg from '@assets/images/backgrounds/start_img.jpeg';
+import startImg from '../../assets/images/backgrounds/start_img.jpeg';
 
 export default function SceneTransition({ nextScene, transitionText }) {
   const { updateGameState } = useGameState();
