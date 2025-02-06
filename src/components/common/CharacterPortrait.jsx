@@ -1,29 +1,25 @@
 import '../../styles/CharacterPortrait.css';
-import mainCharacterImage from '../../assets/images/characters/maincharacter.png';
-import mrChenImage from '../../assets/images/characters/mrchen.png';
-import sarahImage from '../../assets/images/characters/sarah.png';
-import roseImage from '../../assets/images/characters/rose.png';
-import mysteriousStranger from '../../assets/images/characters/mysteriousstranger.png';
 
 const CHARACTER_CONFIG = {
   "Main Character": {
-    image: mainCharacterImage,
+    image: '/assets/images/characters/maincharacter.png',
   },
   "Sarah": {
-    image: sarahImage,
+    image: '/assets/images/characters/sarah.png',
   },
   "Mr. Chen": {
-    image: mrChenImage,
+    image: '/assets/images/characters/mrchen.png',
     shouldFlip: true,
   },
   "Rose": {
-    image: roseImage,
+    image: '/assets/images/characters/rose.png',
     shouldFlip: true,
   },
   "Mysterious Stranger": {
-    image: mysteriousStranger,
+    image: '/assets/images/characters/mysteriousstranger.png',
   }
 };
+
 
 const CharacterPortrait = ({ character, position = 'right', isSpeaking = true }) => {
   if (!character || character === "Narrator" || !CHARACTER_CONFIG[character]) return null;

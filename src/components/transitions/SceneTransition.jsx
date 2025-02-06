@@ -1,7 +1,6 @@
 import '../../styles/SceneTransition.css'
 import { useEffect, useState } from "react";
 import { useGameState } from '../../contexts/GameStateContext';
-import startImg from '../../assets/images/backgrounds/start_img.jpeg';
 
 export default function SceneTransition({ nextScene, transitionText }) {
   const { updateGameState } = useGameState();
@@ -28,7 +27,7 @@ export default function SceneTransition({ nextScene, transitionText }) {
       className="transition-container" 
       style={{ 
         opacity, 
-        backgroundImage: `url(${startImg})`
+        backgroundImage: `url('/assets/images/backgrounds/start_img.jpeg')`
       }}
     >
       {showText && (

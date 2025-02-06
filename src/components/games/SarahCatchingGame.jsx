@@ -159,7 +159,7 @@ const SarahCatchingGame = ({ onGameComplete }) => {
           <div className="game-over-overlay">
             <div className="game-over-content">
               <h2 className="game-over-title">
-                {showWinMessage? 'You Won!': 'Try Again!'}
+                {showWinMessage? 'Home Cleaned!': 'Try Again!'}
               </h2>
               <p className="game-over-score">Final Score: {score}</p>
               {!showWinMessage && (

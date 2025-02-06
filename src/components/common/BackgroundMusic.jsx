@@ -3,39 +3,33 @@ import { useGameProgress } from '../../contexts';
 import { useGameAudio } from '../../contexts';
 import '../../styles/BackgroundMusic.css';
 
-// Import all music tracks
-import menuMusic from '../../assets/music/menu.mp3';
-import nightMusic from '../../assets/music/night.mp3';
-import minigameMusic from '../../assets/music/minigame.mp3';
-import communityboardMusic from '../../assets/music/community-board.mp3';
-import creditsMusic from '../../assets/music/credits.mp3';
-
-// Define music tracks mapping
+// Define music tracks mapping with direct URLs
 const musicTracks = {
   // Menu and morning scenes
-  menu: menuMusic,
-  day1_morning: menuMusic,
-  day2_morning: menuMusic,
-  day3_morning: menuMusic,
+  menu: '/assets/music/menu.mp3',
+  day1_morning: '/assets/music/menu.mp3',
+  day2_morning: '/assets/music/menu.mp3',
+  day3_morning: '/assets/music/menu.mp3',
 
   // Night scenes
-  day1_night: nightMusic,
-  day2_night: nightMusic,
-  day3_night: nightMusic,
+  day1_night: '/assets/music/night.mp3',
+  day2_night: '/assets/music/night.mp3',
+  day3_night: '/assets/music/night.mp3',
 
   // Interaction/minigame scenes
-  day1_interaction: minigameMusic,
-  day2_interaction: minigameMusic,
-  day3_interaction: minigameMusic,
+  day1_interaction: '/assets/music/minigame.mp3',
+  day2_interaction: '/assets/music/minigame.mp3',
+  day3_interaction: '/assets/music/minigame.mp3',
 
   // Community board scenes
-  day1_community_board: communityboardMusic,
-  day2_community_board: communityboardMusic,
-  day3_community_board: communityboardMusic,
+  day1_community_board: '/assets/music/community-board.mp3',
+  day2_community_board: '/assets/music/community-board.mp3',
+  day3_community_board: '/assets/music/community-board.mp3',
 
   // Credits
-  credits: creditsMusic
+  credits: '/assets/music/credits.mp3'
 };
+
 
 const BackgroundMusic = () => {
   const { currentScene } = useGameProgress();

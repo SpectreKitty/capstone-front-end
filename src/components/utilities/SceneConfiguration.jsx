@@ -1,14 +1,9 @@
-import morningImage from '/src/assets/images/backgrounds/bedroom.png';
-import nightImage from '/src/assets/images/backgrounds/bedroom_night.png';
-import communityBoardImage from '/src/assets/images/backgrounds/community_board.jpeg';
-import defaultImage from '/src/assets/images/backgrounds/start_img.jpeg';
-
-// Background types for reusable scenes
+// Define paths directly instead of importing like I was doing before
 export const BACKGROUNDS = {
-  MORNING: morningImage,
-  NIGHT: nightImage,
-  COMMUNITY_BOARD: communityBoardImage,
-  DEFAULT: defaultImage,
+  MORNING: '/assets/images/backgrounds/bedroom.png',
+  NIGHT: '/assets/images/backgrounds/bedroom_night.png',
+  COMMUNITY_BOARD: '/assets/images/backgrounds/community_board.jpeg',
+  DEFAULT: '/assets/images/backgrounds/start_img.jpeg',
 };
 
 // Scene types that repeat each day
