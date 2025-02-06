@@ -1,4 +1,4 @@
-import '../../styles/DayTransition.css'
+import '../../styles/SceneTransition.css'
 import { useEffect, useState } from "react";
 import { useGameState } from '../../contexts/GameStateContext';
 
